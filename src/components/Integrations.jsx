@@ -61,7 +61,7 @@ export default function Integrations() {
           </svg>
         </div>
         <span className="eyebrow uppercase tracking-wider text-[0.45rem] text-gilt/50">
-          Scale & Form
+          Horizon Digital LTD
         </span>
       </div>
 
