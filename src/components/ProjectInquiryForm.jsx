@@ -26,12 +26,14 @@ export default function ProjectInquiryForm({ isOpen, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Prevent background scrolling when open
+  // Prevent background scrolling when open and sync with scroll controller
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.setAttribute('data-inquiry', 'open');
     } else {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-inquiry');
       // Reset form on close after a delay
       setTimeout(() => {
         setStep(1);
@@ -39,6 +41,10 @@ export default function ProjectInquiryForm({ isOpen, onClose }) {
         setFormData({ projectType: '', budget: '', name: '', email: '', phone: '', details: '' });
       }, 500);
     }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('data-inquiry');
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -100,7 +106,7 @@ export default function ProjectInquiryForm({ isOpen, onClose }) {
       `}</style>
       <div className="absolute inset-0 backdrop-blur-2xl" style={{ zIndex: 99999, backgroundColor: 'rgba(11, 11, 12, 0.95)' }} onClick={onClose}></div>
       
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-bone/20 p-8 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)]" style={{ zIndex: 100000, backgroundColor: '#0b0b0c' }}>
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-bone/20 p-6 sm:p-8 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)]" style={{ zIndex: 100000, backgroundColor: '#0b0b0c' }}>
         
         {/* Close Button */}
         <button 

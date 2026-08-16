@@ -64,8 +64,8 @@ const colorScale = scaleLinear({
 // X axis labels
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// Y axis labels (Di, Do, Sa -> Tue, Thu, Sat in German abbreviated, or just standard 2nd, 4th, 6th day)
-const days = ["Di", "Do", "Sa"];
+// Y axis labels
+const days = ["Tue", "Thu", "Sat"];
 
 const rectWidth = 8.2;
 const rectHeight = 8.2;
