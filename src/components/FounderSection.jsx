@@ -41,15 +41,16 @@ export default function FounderSection() {
             <div className="group relative w-full overflow-hidden rounded-2xl border border-bone/[0.12] bg-gradient-to-b from-bone/[0.06] to-bone/[0.015] shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] aspect-[3/4] md:aspect-square lg:aspect-[3/4] flex flex-col justify-end p-6">
               <span aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.2]" style={{ backgroundImage: "linear-gradient(to right, rgba(241,241,239,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,239,0.05) 1px, transparent 1px)", backgroundSize: "24px 24px", maskImage: "radial-gradient(100% 100% at 50% 0%, black 30%, transparent 100%)" }}></span>
               
-              <div className="relative z-10 w-full flex flex-col items-center justify-center h-full opacity-60 mix-blend-overlay">
-                {/* Abstract graphic representing the founder space */}
-                <div className="w-32 h-32 rounded-full border border-bone/20 flex items-center justify-center bg-bone/[0.02]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" className="text-bone/40">
-                    <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
-                  </svg>
-                </div>
-                <p className="eyebrow mt-6 text-[0.6rem] text-bone/50 text-center tracking-widest">PORTRAIT PLACEHOLDER</p>
-              </div>
+              {/* Founder Image */}
+              <img 
+                src="/img/founder.jpeg" 
+                alt="Syed Hassan" 
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+              
+              {/* Gradient Overlay for Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
 
               {/* Portrait Label */}
               <div className="relative z-10 mt-auto border-t border-bone/10 pt-4 flex flex-col items-start">
