@@ -59,6 +59,8 @@ function KnightModel({ progress }) {
   // 11: projekt-anfragen (C) -> knight C
   // 12: footer (C) -> knight C
   
+  const farRightX = isPortrait ? viewport.width * 0.18 : Math.min(viewport.width * 0.32, 4.5);
+  
   const states = [
     { x: rightX, rot: 0, z: -1 },                  // 0: start
     { x: leftX,  rot: Math.PI / 2, z: -1.5 },      // 1: in-zahlen
@@ -69,9 +71,9 @@ function KnightModel({ progress }) {
     { x: leftX,  rot: Math.PI * 3, z: -1.5 },      // 6: vom-briefing-zum-launch
     { x: rightX, rot: Math.PI * 3.5, z: -1 },      // 7: haeufige-fragen
     { x: rightX, rot: Math.PI * 4, z: -1 },        // 8: das-system
-    { x: centerX, rot: Math.PI * 4.5, z: -0.5 },   // 9: aktivitaet
-    { x: rightX * 1.5,  rot: Math.PI * 4.75, z: -1 },    // 10: founder
-    { x: centerX, rot: Math.PI * 5, z: -0.5 },     // 11: projekt-anfragen
+    { x: rightX, rot: Math.PI * 4.4, z: -1.2 },    // 9: aktivitaet
+    { x: farRightX, rot: Math.PI * 4.75, z: -0.8 }, // 10: founder
+    { x: centerX, rot: Math.PI * 5.2, z: -0.5 },   // 11: projekt-anfragen
     { x: centerX, rot: Math.PI * 6, z: -0.5 }      // 12: footer
   ];
 
