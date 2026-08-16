@@ -12,7 +12,7 @@ export default function AnimatedSection({ children, className = '', style = {}, 
         ease: [0.16, 1, 0.3, 1], // Custom spring-like easing matching the original
         delay: delay 
       }}
-      className={className}
+      className={`relative z-40 ${className}`}
       style={style}
     >
       {children}

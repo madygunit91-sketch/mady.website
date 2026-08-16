@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { SECTIONS, scrollToSection, getCurrentSectionIndex } from '../utils/scrollController';
 
 const sections = [
   { id: 'start', label: 'Home', number: '00' },
@@ -11,48 +12,38 @@ const sections = [
   { id: 'haeufige-fragen', label: 'FAQ', number: '07' },
   { id: 'das-system', label: 'The System', number: '08' },
   { id: 'aktivitaet', label: 'Activity', number: '09' },
-  { id: 'projekt-anfragen', label: 'Contact', number: '10' },
-  { id: 'footer', label: 'Footer', number: '11' },
+  { id: 'founder', label: 'Meet the Founder', number: '10' },
+  { id: 'projekt-anfragen', label: 'Contact', number: '11' },
+  { id: 'footer', label: 'Footer', number: '12' },
 ];
 
 export default function NavigationMenu() {
   const [activeSection, setActiveSection] = useState('start');
 
   useEffect(() => {
-    const handleIntersect = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const options = {
-      root: null,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, options);
-
-    sections.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
+    let ticking = false;
+    const updateActiveSection = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const idx = getCurrentSectionIndex();
+          if (SECTIONS[idx]) {
+            setActiveSection(SECTIONS[idx]);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+
+    return () => window.removeEventListener('scroll', updateActiveSection);
   }, []);
 
   const handleClick = useCallback((e, id) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Update URL hash without jumping
-      window.history.pushState(null, '', `#${id}`);
-    }
+    scrollToSection(id);
   }, []);
 
   return (
@@ -64,7 +55,7 @@ export default function NavigationMenu() {
           return (
             <li key={id}>
               <a 
-                className="group flex items-center text-left" 
+                className="group flex items-center text-left cursor-pointer" 
                 href={`#${id}`}
                 onClick={(e) => handleClick(e, id)}
               >
@@ -72,7 +63,7 @@ export default function NavigationMenu() {
                   className={`mr-4 h-px transition-all duration-500 ${isActive ? 'w-10 bg-gilt' : 'w-4 bg-bone/30 group-hover:bg-bone/60'}`}
                 ></span>
                 <span 
-                  className={`text-[0.8rem] font-light tracking-wide transition-colors duration-500 ${isActive ? 'text-bone' : 'text-bone/40 group-hover:text-bone/70'}`}
+                  className={`text-[0.8rem] font-light tracking-wide transition-colors duration-500 ${isActive ? 'text-bone font-medium' : 'text-bone/40 group-hover:text-bone/70'}`}
                 >
                   {label}
                 </span>

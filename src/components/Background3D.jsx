@@ -55,22 +55,24 @@ function KnightModel({ progress }) {
   // 7: haeufige-fragen (text L) -> knight R
   // 8: das-system (text L) -> knight R
   // 9: aktivitaet (C) -> knight C
-  // 10: projekt-anfragen (C) -> knight C
-  // 11: footer (C) -> knight C
+  // 10: founder (text L, image R) -> knight R
+  // 11: projekt-anfragen (C) -> knight C
+  // 12: footer (C) -> knight C
   
   const states = [
-    { x: rightX, rot: 0, z: -1 },                  // 0: Front
-    { x: leftX,  rot: Math.PI / 2, z: -1.5 },      // 1: Right profile
-    { x: rightX, rot: Math.PI, z: -1 },            // 2: Back
-    { x: leftX,  rot: Math.PI * 1.5, z: -1.5 },    // 3: Left profile
-    { x: rightX, rot: Math.PI * 2, z: -1 },        // 4: Front (Full 360)
-    { x: rightX, rot: Math.PI * 2.5, z: -1 },      // 5: Right profile
-    { x: leftX,  rot: Math.PI * 3, z: -1.5 },      // 6: Back
-    { x: rightX, rot: Math.PI * 3.5, z: -1 },      // 7: Left profile
-    { x: rightX, rot: Math.PI * 4, z: -1 },        // 8: Front (Full 360)
-    { x: centerX, rot: Math.PI * 4.5, z: -0.5 },   // 9: Right profile
-    { x: centerX, rot: Math.PI * 5, z: -0.5 },     // 10: Back
-    { x: centerX, rot: Math.PI * 6, z: -0.5 }      // 11: Front (Full 360 to finish)
+    { x: rightX, rot: 0, z: -1 },                  // 0: start
+    { x: leftX,  rot: Math.PI / 2, z: -1.5 },      // 1: in-zahlen
+    { x: rightX, rot: Math.PI, z: -1 },            // 2: was-wir-bauen
+    { x: leftX,  rot: Math.PI * 1.5, z: -1.5 },    // 3: wie-wir-bauen
+    { x: rightX, rot: Math.PI * 2, z: -1 },        // 4: arbeiten
+    { x: rightX, rot: Math.PI * 2.5, z: -1 },      // 5: aus-einer-hand
+    { x: leftX,  rot: Math.PI * 3, z: -1.5 },      // 6: vom-briefing-zum-launch
+    { x: rightX, rot: Math.PI * 3.5, z: -1 },      // 7: haeufige-fragen
+    { x: rightX, rot: Math.PI * 4, z: -1 },        // 8: das-system
+    { x: centerX, rot: Math.PI * 4.5, z: -0.5 },   // 9: aktivitaet
+    { x: rightX * 1.5,  rot: Math.PI * 4.75, z: -1 },    // 10: founder
+    { x: centerX, rot: Math.PI * 5, z: -0.5 },     // 11: projekt-anfragen
+    { x: centerX, rot: Math.PI * 6, z: -0.5 }      // 12: footer
   ];
 
   useFrame(() => {
@@ -162,7 +164,7 @@ function Scene() {
 
 export default function Background3D() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
+    <div className="fixed inset-0 z-[5] pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
         dpr={[1, 2]}

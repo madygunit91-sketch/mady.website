@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Background3D />
-      <div className="relative z-10">
+      <div className="relative">
         {children}
       </div>
     </>
