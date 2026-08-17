@@ -76,8 +76,8 @@ export default function ActivityHeatmap() {
   const yMax = 7 * (rectHeight + gap);
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-bone/[0.10] bg-gradient-to-b from-bone/[0.05] to-bone/[0.012] p-5 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)]">
-      <header className="mb-4 flex items-baseline gap-3">
+    <div className="relative overflow-hidden rounded-xl border border-bone/[0.10] bg-gradient-to-b from-bone/[0.05] to-bone/[0.012] p-3.5 sm:p-5 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)]">
+      <header className="mb-3 sm:mb-4 flex items-baseline gap-3">
         <h3 className="eyebrow text-[0.58rem] text-gilt/55 uppercase tracking-wider">Activity</h3>
         <span className="text-[0.62rem] text-bone/35">2025</span>
       </header>
