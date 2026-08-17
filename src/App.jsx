@@ -74,6 +74,16 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Scroll to hash on initial load
+  React.useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, '');
+    if (hash && SECTIONS.includes(hash)) {
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 300);
+    }
+  }, []);
+
   // Global 3D Spatial Hover Effect
   React.useEffect(() => {
     let ticking = false;

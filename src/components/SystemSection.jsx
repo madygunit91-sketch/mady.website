@@ -1,6 +1,7 @@
 import React from 'react';
 import ChoroplethMap from './ChoroplethMap';
 import RadarChart from './RadarChart';
+import ProductionPipeline from './ProductionPipeline';
 
 export default function SystemSection() {
   return (
@@ -226,66 +227,7 @@ export default function SystemSection() {
 
               {/* Desktop Card 4: Pipeline */}
               <div className="h-full md:col-span-1" style={{ transformStyle: "preserve-3d" }}>
-                <div className="h-full" style={{ transformStyle: "preserve-3d" }}>
-                  <div className="group relative flex h-full flex-col gap-2.5 overflow-hidden rounded-xl p-4 border border-bone/[0.10] bg-gradient-to-b from-bone/[0.055] via-bone/[0.028] to-bone/[0.012] shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] transition-[border-color,box-shadow] duration-500 ease-out hover:border-bone/[0.20] hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gilt/70">
-                    <span 
-                      aria-hidden="true" 
-                      className="pointer-events-none absolute inset-0 opacity-[0.35]" 
-                      style={{
-                        backgroundImage: "linear-gradient(to right, rgba(241,241,239,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,239,0.05) 1px, transparent 1px)",
-                        backgroundSize: "46px 46px",
-                        maskImage: "radial-gradient(120% 100% at 50% 0%, black 30%, transparent 100%)"
-                      }}
-                    />
-                    <div className="relative z-10 flex h-full flex-col gap-2" style={{ transform: "translateZ(18px)" }}>
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="eyebrow mb-1 text-[0.54rem] text-gilt/60">Pipeline</p>
-                          <h3 className="display text-[1rem] leading-tight text-bone">What happens before launch</h3>
-                        </div>
-                      </div>
-                      <div className="relative flex h-[11.5rem] flex-col">
-                        <div className="relative flex-1 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent, black 12%, black 82%, transparent)" }}>
-                          <ul className="flex flex-col gap-2 py-2">
-                            <li>
-                              <div className="flex items-start gap-2.5 rounded-lg border border-bone/[0.07] bg-bone/[0.025] px-3 py-2.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gilt/60">
-                                  <path d="M236,128a108,108,0,0,1-216,0c0-42.52,24.73-81.34,63-98.9A12,12,0,1,1,93,50.91C63.24,64.57,44,94.83,44,128a84,84,0,0,0,168,0c0-33.17-19.24-63.43-49-77.09A12,12,0,1,1,173,29.1C211.27,46.66,236,85.48,236,128Z"></path>
-                                </svg>
-                                <div className="min-w-0">
-                                  <p className="truncate text-[0.74rem] font-medium text-bone/90">Scene calibrated</p>
-                                  <p className="truncate text-[0.66rem] text-bone/45">Camera, light and material per section</p>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div className="flex items-start gap-2.5 rounded-lg border border-bone/[0.07] bg-bone/[0.025] px-3 py-2.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gilt/60">
-                                  <path d="M176.49,95.51a12,12,0,0,1,0,17l-56,56a12,12,0,0,1-17,0l-24-24a12,12,0,1,1,17-17L112,143l47.51-47.52A12,12,0,0,1,176.49,95.51ZM236,128A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"></path>
-                                </svg>
-                                <div className="min-w-0">
-                                  <p className="truncate text-[0.74rem] font-medium text-bone/90">Frame rate checked</p>
-                                  <p className="truncate text-[0.66rem] text-bone/45">Frame budget on desktop and mobile</p>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div className="flex items-start gap-2.5 rounded-lg border border-bone/[0.07] bg-bone/[0.025] px-3 py-2.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gilt/60">
-                                  <path d="M176.49,95.51a12,12,0,0,1,0,17l-56,56a12,12,0,0,1-17,0l-24-24a12,12,0,1,1,17-17L112,143l47.51-47.52A12,12,0,0,1,176.49,95.51ZM236,128A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"></path>
-                                </svg>
-                                <div className="min-w-0">
-                                  <p className="truncate text-[0.74rem] font-medium text-bone/90">Contrast checked</p>
-                                  <p className="truncate text-[0.66rem] text-bone/45">Text readability over moving background</p>
-                                </div>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ProductionPipeline />
               </div>
 
               {/* Desktop Card 5: Attitude */}
