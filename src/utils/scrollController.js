@@ -34,7 +34,7 @@ export function getCurrentSectionIndex() {
   return closestIdx;
 }
 
-export function scrollToSection(target, lockDuration = 800) {
+export function scrollToSection(target, lockDuration = 600) {
   const id = typeof target === 'number' ? SECTIONS[target] : target;
   if (!id) return;
   const el = document.getElementById(id);
@@ -43,12 +43,12 @@ export function scrollToSection(target, lockDuration = 800) {
   const rect = el.getBoundingClientRect();
   const targetTop = rect.top + window.scrollY;
 
-  // Lock scrolling so multiple rapid wheel events or momentum don't skip sections
+  // Immediate unlock if user explicitly clicked a navigation link
   isLocked = true;
   if (lockTimeout) clearTimeout(lockTimeout);
 
   window.scrollTo({
-    top: targetTop,
+    top: Math.round(targetTop),
     behavior: 'smooth'
   });
 
@@ -60,7 +60,7 @@ export function scrollToSection(target, lockDuration = 800) {
 
   // Release lock after animation finishes
   const distance = Math.abs(window.scrollY - targetTop);
-  const duration = Math.max(Math.min(distance * 0.4, 1400), lockDuration);
+  const duration = Math.min(Math.max(distance * 0.35, 400), 1000);
   
   lockTimeout = setTimeout(() => {
     isLocked = false;
