@@ -1,13 +1,175 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ChoroplethMap from './ChoroplethMap';
 import RadarChart from './RadarChart';
 import ProductionPipeline from './ProductionPipeline';
 
 export default function SystemSection() {
+  // Mobile Accordion State: toggle open/close
+  const [expandedMobile, setExpandedMobile] = useState(null);
+
+  const toggleMobile = (id) => {
+    setExpandedMobile((prev) => (prev === id ? null : id));
+  };
+
+  const mobileSections = [
+    {
+      id: 'reach',
+      step: '01',
+      eyebrow: 'Reach',
+      title: 'Delivered worldwide',
+      stat: '9 Regions',
+      content: (
+        <div className="flex flex-col gap-2.5 pt-2 text-[0.72rem] text-bone/80 border-t border-bone/10 mt-2">
+          <p className="leading-relaxed text-bone/90 font-light">
+            Every page sits at the edges of the network — delivered directly from 9 edge clusters close to your visitors.
+          </p>
+          <div className="grid grid-cols-2 gap-1.5 py-1 text-[0.62rem] text-bone/60">
+            <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-1.5 flex items-center justify-between">
+              <span>Edge Delivery</span>
+              <span className="text-gilt font-medium">&lt;50ms</span>
+            </div>
+            <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-1.5 flex items-center justify-between">
+              <span>Availability</span>
+              <span className="text-gilt font-medium">99.99%</span>
+            </div>
+          </div>
+          <p className="text-[0.64rem] text-bone/50 italic">
+            Zero cold starts, ultra-fast routing, and instant dynamic caching worldwide.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'sequence',
+      step: '02',
+      eyebrow: 'Sequence',
+      title: 'From briefing to launch',
+      stat: '4 Steps',
+      content: (
+        <div className="flex flex-col gap-2 pt-2 border-t border-bone/10 mt-2">
+          <ol className="flex flex-col gap-1.5 text-[0.70rem]">
+            <li className="flex items-start gap-2">
+              <span className="eyebrow text-[0.52rem] text-gilt/60 font-semibold mt-0.5">01</span>
+              <div>
+                <strong className="text-bone/90 font-medium block">Discovery</strong>
+                <span className="text-bone/60 text-[0.64rem]">Brand, audience, market and project objectives.</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="eyebrow text-[0.52rem] text-gilt/60 font-semibold mt-0.5">02</span>
+              <div>
+                <strong className="text-bone/90 font-medium block">Concept</strong>
+                <span className="text-bone/60 text-[0.64rem]">Information structure, design direction, user journey.</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="eyebrow text-[0.52rem] text-gilt/60 font-semibold mt-0.5">03</span>
+              <div>
+                <strong className="text-bone/90 font-medium block">Build</strong>
+                <span className="text-bone/60 text-[0.64rem]">Tailored design, responsive layout, motion & 3D engineering.</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="eyebrow text-[0.52rem] text-gilt/60 font-semibold mt-0.5">04</span>
+              <div>
+                <strong className="text-bone/90 font-medium block">Launch & Polish</strong>
+                <span className="text-bone/60 text-[0.64rem]">Publish, frame-budget verification, ongoing refinement.</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+      )
+    },
+    {
+      id: 'pipeline',
+      step: '03',
+      eyebrow: 'Pipeline',
+      title: 'What happens before launch',
+      stat: '6 Stages',
+      content: (
+        <div className="flex flex-col gap-2 pt-2 border-t border-bone/10 mt-2">
+          <p className="text-[0.68rem] text-bone/80 leading-relaxed font-light">
+            Every detail undergoes strict automated & manual production audits:
+          </p>
+          <ul className="grid grid-cols-2 gap-1.5 text-[0.62rem] text-bone/70">
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Strategy locked</span>
+            </li>
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Experience built</span>
+            </li>
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Performance tuned</span>
+            </li>
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Accessibility verified</span>
+            </li>
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Responsive tested</span>
+            </li>
+            <li className="flex items-center gap-1.5 rounded-md border border-bone/10 bg-bone/[0.03] p-1.5">
+              <span className="size-1.5 rounded-full bg-gilt" />
+              <span>Launch ready</span>
+            </li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'weighting',
+      step: '04',
+      eyebrow: 'Weighting',
+      title: 'Capability profile',
+      stat: 'Calibrated',
+      content: (
+        <div className="flex flex-col gap-2.5 pt-2 border-t border-bone/10 mt-2">
+          <p className="text-[0.68rem] text-bone/80 leading-relaxed font-light">
+            Dynamic weighting adjusted specifically per engagement — balance of visual power, conversion, and performance:
+          </p>
+          <div className="space-y-1.5 text-[0.62rem]">
+            <div>
+              <div className="flex justify-between text-bone/80 mb-0.5">
+                <span>Strategy &amp; Storytelling</span>
+                <span className="text-gilt font-medium">92%</span>
+              </div>
+              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
+                <div className="h-full bg-gilt rounded-full" style={{ width: '92%' }} />
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between text-bone/80 mb-0.5">
+                <span>3D &amp; Visual Craft</span>
+                <span className="text-gilt font-medium">96%</span>
+              </div>
+              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
+                <div className="h-full bg-gilt rounded-full" style={{ width: '96%' }} />
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between text-bone/80 mb-0.5">
+                <span>Performance &amp; Code Quality</span>
+                <span className="text-gilt font-medium">95%</span>
+              </div>
+              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
+                <div className="h-full bg-gilt rounded-full" style={{ width: '95%' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
   return (
     <section 
       aria-labelledby="spatial-bento-heading" 
-      className="relative flex h-[100svh] min-h-[100svh] max-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64 overflow-hidden" 
+      className="relative flex min-h-[100svh] md:h-[100svh] md:max-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64 overflow-hidden py-10 md:py-0" 
       id="das-system"
     >
       {/* Anchor alias for #system */}
@@ -16,7 +178,7 @@ export default function SystemSection() {
       <div className="w-full max-w-6xl mx-auto flex flex-col justify-center h-full max-h-[100svh] py-3 sm:py-4 md:py-6">
         
         {/* Section Header */}
-        <header className="relative z-10 mb-2.5 sm:mb-3 md:mb-4 shrink-0">
+        <header className="relative z-10 mb-3 md:mb-4 shrink-0">
           <p className="eyebrow mb-1 text-gilt text-[0.62rem] sm:text-[0.68rem] md:text-[0.72rem]">
             <span className="mr-2.5 tabular-nums opacity-70">08</span>The System
           </p>
@@ -28,60 +190,69 @@ export default function SystemSection() {
           </p>
         </header>
 
-        {/* MOBILE VIEW (< md): 2x2 Bento fitting 100% on one screen without scrolling */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-2.5 md:hidden w-full max-w-lg mx-auto shrink-0">
-          
-          {/* Mobile Card 1: Reach */}
-          <div className="group relative flex flex-col justify-between rounded-xl p-3 border border-bone/[0.12] bg-gradient-to-b from-bone/[0.07] to-bone/[0.02] shadow-lg backdrop-blur-md">
-            <div>
-              <p className="eyebrow text-[0.5rem] text-gilt/70">Reach</p>
-              <h3 className="display text-[0.85rem] text-bone mt-0.5 leading-snug">Delivered worldwide</h3>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between border-t border-bone/10 pt-1.5">
-              <span className="text-[0.62rem] text-bone/60 leading-tight">Global edge</span>
-              <span className="display text-[0.8rem] text-bone font-medium">9 Regions</span>
-            </div>
-          </div>
+        {/* MOBILE VIEW (< md): 4 Interactive Expandable / Collapsible Cards */}
+        <div className="flex flex-col gap-2.5 md:hidden w-full max-w-lg mx-auto shrink-0">
+          {mobileSections.map((sec) => {
+            const isExpanded = expandedMobile === sec.id;
+            return (
+              <div 
+                key={sec.id}
+                onClick={() => toggleMobile(sec.id)}
+                className={`group relative flex flex-col rounded-xl p-3 sm:p-3.5 border transition-all duration-300 backdrop-blur-md cursor-pointer select-none ${
+                  isExpanded 
+                    ? 'border-gilt/40 bg-gradient-to-b from-bone/[0.09] via-bone/[0.04] to-bone/[0.02] shadow-[0_8px_24px_rgba(0,0,0,0.7)] ring-1 ring-gilt/20' 
+                    : 'border-bone/[0.12] bg-gradient-to-b from-bone/[0.06] to-bone/[0.02] shadow-md hover:border-bone/[0.22] hover:bg-bone/[0.07]'
+                }`}
+              >
+                {/* Top Row: Eyebrow + Title + Stat + Animated Chevron */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="eyebrow text-[0.52rem] text-gilt/80 font-semibold">{sec.eyebrow}</span>
+                      <span className="eyebrow text-[0.46rem] text-bone/40 rounded-full border border-bone/10 px-1.5 py-0.2">
+                        {sec.step}
+                      </span>
+                    </div>
+                    <h3 className="display text-[0.88rem] text-bone mt-0.5 leading-snug">
+                      {sec.title}
+                    </h3>
+                  </div>
 
-          {/* Mobile Card 2: Sequence */}
-          <div className="group relative flex flex-col justify-between rounded-xl p-3 border border-bone/[0.12] bg-gradient-to-b from-bone/[0.07] to-bone/[0.02] shadow-lg backdrop-blur-md">
-            <div>
-              <p className="eyebrow text-[0.5rem] text-gilt/70">Sequence</p>
-              <h3 className="display text-[0.85rem] text-bone mt-0.5 leading-snug">Briefing to launch</h3>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between border-t border-bone/10 pt-1.5">
-              <span className="text-[0.62rem] text-bone/60 leading-tight">Structured</span>
-              <span className="display text-[0.8rem] text-bone font-medium">4 Steps</span>
-            </div>
-          </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="display text-[0.76rem] text-gilt font-medium tabular-nums">
+                      {sec.stat}
+                    </span>
+                    <div className={`flex size-5 items-center justify-center rounded-full border border-bone/15 bg-bone/[0.04] text-bone/70 transition-transform duration-300 ${
+                      isExpanded ? 'rotate-180 border-gilt/40 text-gilt bg-gilt/10' : 'rotate-0'
+                    }`}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" className="size-2.5">
+                        <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
 
-          {/* Mobile Card 3: Pipeline */}
-          <div className="group relative flex flex-col justify-between rounded-xl p-3 border border-bone/[0.12] bg-gradient-to-b from-bone/[0.07] to-bone/[0.02] shadow-lg backdrop-blur-md">
-            <div>
-              <p className="eyebrow text-[0.5rem] text-gilt/70">Pipeline</p>
-              <h3 className="display text-[0.85rem] text-bone mt-0.5 leading-snug">Performance tested</h3>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between border-t border-bone/10 pt-1.5">
-              <span className="text-[0.62rem] text-bone/60 leading-tight">Framerate &amp; QA</span>
-              <span className="display text-[0.8rem] text-bone font-medium">100%</span>
-            </div>
-          </div>
-
-          {/* Mobile Card 4: Weighting */}
-          <div className="group relative flex flex-col justify-between rounded-xl p-3 border border-bone/[0.12] bg-gradient-to-b from-bone/[0.07] to-bone/[0.02] shadow-lg backdrop-blur-md">
-            <div>
-              <p className="eyebrow text-[0.5rem] text-gilt/70">Weighting</p>
-              <h3 className="display text-[0.85rem] text-bone mt-0.5 leading-snug">Capability profile</h3>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between border-t border-bone/10 pt-1.5">
-              <span className="text-[0.62rem] text-bone/60 leading-tight">Design &amp; Craft</span>
-              <span className="display text-[0.8rem] text-bone font-medium">Calibrated</span>
-            </div>
-          </div>
-
+                {/* Smooth Animated Expansion Section */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1.0] }}
+                      className="overflow-hidden"
+                    >
+                      {sec.content}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
-        {/* DESKTOP VIEW (>= md): Full Interactive Spatial Bento Grid */}
+        {/* DESKTOP VIEW (>= md): Full Interactive Spatial Bento Grid — 100% Untouched */}
         <div 
           className="spatial-perspective pointer-events-none relative z-10 ml-auto w-full lg:z-[1] hidden md:block" 
           style={{ perspective: "1800px", transformStyle: "preserve-3d" }}
