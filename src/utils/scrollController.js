@@ -40,17 +40,21 @@ export function scrollToSection(target, lockDuration = 600) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  const rect = el.getBoundingClientRect();
-  const targetTop = rect.top + window.scrollY;
-
-  // Immediate unlock if user explicitly clicked a navigation link
-  isLocked = true;
   if (lockTimeout) clearTimeout(lockTimeout);
+  isLocked = true;
 
-  window.scrollTo({
-    top: Math.round(targetTop),
-    behavior: 'smooth'
-  });
+  try {
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  } catch (err) {
+    const rect = el.getBoundingClientRect();
+    window.scrollTo({
+      top: Math.round(rect.top + window.scrollY),
+      behavior: 'smooth'
+    });
+  }
 
   try {
     window.history.pushState(null, '', `#${id}`);
@@ -58,13 +62,9 @@ export function scrollToSection(target, lockDuration = 600) {
     // ignore
   }
 
-  // Release lock after animation finishes
-  const distance = Math.abs(window.scrollY - targetTop);
-  const duration = Math.min(Math.max(distance * 0.35, 400), 1000);
-  
   lockTimeout = setTimeout(() => {
     isLocked = false;
-  }, duration);
+  }, lockDuration);
 }
 
 export function isScrollLocked() {

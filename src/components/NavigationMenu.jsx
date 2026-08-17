@@ -42,28 +42,34 @@ export default function NavigationMenu() {
   }, []);
 
   const handleClick = useCallback((e, id) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     scrollToSection(id);
   }, []);
 
   return (
-    <aside className="page-chrome fixed left-8 top-1/2 z-30 hidden -translate-y-1/2 lg:block xl:left-12" style={{ textShadow: "0 1px 14px rgba(6,5,5,0.95), 0 0 4px rgba(6,5,5,0.9)" }}>
-      <p className="eyebrow mb-6 text-bone/35">On this page</p>
-      <ul className="space-y-4">
+    <aside 
+      className="page-chrome fixed left-8 top-1/2 z-[100] pointer-events-auto hidden -translate-y-1/2 lg:block xl:left-12" 
+      style={{ textShadow: "0 1px 14px rgba(6,5,5,0.95), 0 0 4px rgba(6,5,5,0.9)" }}
+    >
+      <p className="eyebrow mb-6 text-bone/35 select-none">On this page</p>
+      <ul className="space-y-2 pointer-events-auto">
         {sections.map(({ id, label, number }) => {
           const isActive = activeSection === id;
           return (
             <li key={id}>
               <a 
-                className="group flex items-center text-left cursor-pointer" 
+                className="group flex items-center text-left cursor-pointer py-1.5 px-2 -mx-2 rounded transition-colors duration-200 hover:bg-bone/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gilt/70" 
                 href={`#${id}`}
                 onClick={(e) => handleClick(e, id)}
               >
                 <span 
-                  className={`mr-4 h-px transition-all duration-500 ${isActive ? 'w-10 bg-gilt' : 'w-4 bg-bone/30 group-hover:bg-bone/60'}`}
+                  className={`mr-3.5 h-px transition-all duration-300 ${isActive ? 'w-8 bg-gilt' : 'w-3.5 bg-bone/30 group-hover:w-5 group-hover:bg-bone/60'}`}
                 ></span>
                 <span 
-                  className={`text-[0.8rem] font-light tracking-wide transition-colors duration-500 ${isActive ? 'text-bone font-medium' : 'text-bone/40 group-hover:text-bone/70'}`}
+                  className={`text-[0.78rem] tracking-wide transition-colors duration-300 ${isActive ? 'text-bone font-medium' : 'text-bone/45 group-hover:text-bone'}`}
                 >
                   {label}
                 </span>
