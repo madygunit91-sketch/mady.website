@@ -24,7 +24,17 @@ export default function SystemSection() {
           <p className="leading-relaxed text-bone/90 font-light">
             Every page sits at the edges of the network — delivered directly from 9 edge clusters close to your visitors.
           </p>
-          <div className="grid grid-cols-2 gap-1.5 py-1 text-[0.62rem] text-bone/60">
+
+          {/* Interactive Global Edge World Map */}
+          <div className="relative my-1 w-full self-center overflow-hidden rounded-lg border border-bone/10 bg-bone/[0.02] p-1">
+            <div className="relative w-full" style={{ aspectRatio: "2 / 1" }}>
+              <div className="relative h-full w-full">
+                <ChoroplethMap />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-1.5 py-0.5 text-[0.62rem] text-bone/60">
             <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-1.5 flex items-center justify-between">
               <span>Edge Delivery</span>
               <span className="text-gilt font-medium">&lt;50ms</span>
