@@ -52,17 +52,34 @@ const dayLabels = [
 
 export default function ActivityHeatmap() {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-bone/[0.10] bg-gradient-to-b from-bone/[0.05] to-bone/[0.012] p-5 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)]">
+    <div className="relative overflow-hidden rounded-2xl border border-bone/[0.12] bg-gradient-to-b from-bone/[0.06] via-bone/[0.03] to-bone/[0.012] p-5 sm:p-7 md:p-8 shadow-[0_28px_70px_-30px_rgba(0,0,0,1)] max-w-4xl">
       
-      {/* Header */}
-      <header className="mb-4 flex items-baseline gap-3">
-        <h3 className="eyebrow text-[0.58rem] text-gilt/55">Activity</h3>
-        <span className="text-[0.62rem] text-bone/35">2025</span>
+      {/* Eyebrow & Year Header */}
+      <header className="mb-3 flex items-baseline justify-between gap-3 border-b border-bone/10 pb-2.5">
+        <div className="flex items-center gap-2.5">
+          <h3 className="eyebrow text-[0.60rem] sm:text-[0.66rem] text-gilt font-semibold tracking-wider">
+            Activity
+          </h3>
+          <span className="eyebrow rounded-full border border-bone/15 bg-bone/[0.04] px-2 py-0.5 text-[0.50rem] text-bone/70">
+            Workdays
+          </span>
+        </div>
+        <span className="text-[0.66rem] sm:text-[0.70rem] font-medium text-bone/45 tabular-nums">2025</span>
       </header>
 
-      {/* Chart Wrapper with responsive container */}
-      <div className="relative w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <div className="relative" style={{ width: '340px', height: '62px' }}>
+      {/* Main Title & Description on Top of Chart */}
+      <div className="mb-5 sm:mb-6 space-y-1.5">
+        <h4 className="display text-[1.15rem] sm:text-[1.35rem] md:text-[1.5rem] text-bone leading-tight">
+          A year, <span className="display-italic">day by day</span>
+        </h4>
+        <p className="body-copy text-[0.74rem] sm:text-[0.80rem] md:text-[0.85rem] text-bone/70 leading-relaxed max-w-2xl">
+          Each cell is a working day. Dense weeks are build phases; quiet weeks are review and testing.
+        </p>
+      </div>
+
+      {/* Enlarged Chart Wrapper with responsive scale & scroll */}
+      <div className="relative w-full overflow-x-auto pt-2 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative transform origin-left scale-100 sm:scale-110 md:scale-120" style={{ width: '340px', height: '64px', marginBottom: '12px' }}>
           
           {/* X-Axis Month Labels (top edge) */}
           {monthLabels.map((m) => (
@@ -72,7 +89,7 @@ export default function ActivityHeatmap() {
               style={{
                 top: '0px',
                 left: m.left,
-                color: 'var(--chart-label, rgba(241,241,239,0.45))',
+                color: 'var(--chart-label, rgba(241,241,239,0.5))',
                 fontSize: '0.54rem',
                 lineHeight: 1
               }}
@@ -90,7 +107,7 @@ export default function ActivityHeatmap() {
                 left: '2px',
                 top: d.top,
                 transform: 'translateY(-20%)',
-                color: 'var(--chart-label, rgba(241,241,239,0.45))',
+                color: 'var(--chart-label, rgba(241,241,239,0.5))',
                 fontSize: '0.52rem',
                 lineHeight: 1
               }}
@@ -102,8 +119,8 @@ export default function ActivityHeatmap() {
           {/* Visx SVG Heatmap */}
           <svg 
             width={340} 
-            height={62} 
-            viewBox="0 0 340 62" 
+            height={64} 
+            viewBox="0 0 340 64" 
             className="block overflow-visible"
           >
             <Group left={26} top={18}>
