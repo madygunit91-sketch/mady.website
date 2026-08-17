@@ -5,11 +5,21 @@ import RadarChart from './RadarChart';
 import ProductionPipeline from './ProductionPipeline';
 
 export default function SystemSection() {
-  // Mobile Accordion State: toggle open/close
-  const [expandedMobile, setExpandedMobile] = useState(null);
+  // Mobile Sections: Open by default on mobile, tap to collapse/expand individually
+  const [openMobile, setOpenMobile] = useState(
+    () => new Set(['reach', 'sequence', 'pipeline', 'weighting', 'attitude'])
+  );
 
   const toggleMobile = (id) => {
-    setExpandedMobile((prev) => (prev === id ? null : id));
+    setOpenMobile((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
   };
 
   const mobileSections = [
@@ -184,13 +194,13 @@ export default function SystemSection() {
   return (
     <section 
       aria-labelledby="spatial-bento-heading" 
-      className="relative flex min-h-[100svh] md:h-[100svh] md:max-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64 overflow-hidden py-10 md:py-0" 
+      className="relative flex min-h-[100svh] md:h-[100svh] md:max-h-[100svh] md:overflow-hidden items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64 py-16 sm:py-20 md:py-0" 
       id="das-system"
     >
       {/* Anchor alias for #system */}
       <span id="system" className="absolute top-0 left-0 pointer-events-none" aria-hidden="true" />
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col justify-center h-full max-h-[100svh] py-3 sm:py-4 md:py-6">
+      <div className="w-full max-w-6xl mx-auto flex flex-col justify-center min-h-full md:h-full md:max-h-[100svh] py-4 md:py-6">
         
         {/* Section Header */}
         <header className="relative z-10 mb-3 md:mb-4 shrink-0">
@@ -205,18 +215,18 @@ export default function SystemSection() {
           </p>
         </header>
 
-        {/* MOBILE VIEW (< md): 4 Interactive Expandable / Collapsible Cards */}
-        <div className="flex flex-col gap-2.5 md:hidden w-full max-w-lg mx-auto shrink-0">
+        {/* MOBILE VIEW (< md): 5 Interactive Cards, Open by default, Tap to collapse/expand with natural two-scroll view */}
+        <div className="flex flex-col gap-3 md:hidden w-full max-w-lg mx-auto py-2">
           {mobileSections.map((sec) => {
-            const isExpanded = expandedMobile === sec.id;
+            const isExpanded = openMobile.has(sec.id);
             return (
               <div 
                 key={sec.id}
                 onClick={() => toggleMobile(sec.id)}
-                className={`group relative flex flex-col rounded-xl p-3 sm:p-3.5 border transition-all duration-300 backdrop-blur-md cursor-pointer select-none ${
+                className={`group relative flex flex-col rounded-xl p-3.5 border transition-all duration-300 backdrop-blur-md cursor-pointer select-none ${
                   isExpanded 
-                    ? 'border-gilt/40 bg-gradient-to-b from-bone/[0.09] via-bone/[0.04] to-bone/[0.02] shadow-[0_8px_24px_rgba(0,0,0,0.7)] ring-1 ring-gilt/20' 
-                    : 'border-bone/[0.12] bg-gradient-to-b from-bone/[0.06] to-bone/[0.02] shadow-md hover:border-bone/[0.22] hover:bg-bone/[0.07]'
+                    ? 'border-gilt/35 bg-gradient-to-b from-bone/[0.08] via-bone/[0.04] to-bone/[0.02] shadow-[0_8px_24px_rgba(0,0,0,0.6)] ring-1 ring-gilt/15' 
+                    : 'border-bone/[0.12] bg-gradient-to-b from-bone/[0.05] to-bone/[0.02] shadow-md hover:border-bone/[0.22] hover:bg-bone/[0.07]'
                 }`}
               >
                 {/* Top Row: Eyebrow + Title + Stat + Animated Chevron */}
