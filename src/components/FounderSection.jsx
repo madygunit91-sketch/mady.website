@@ -109,7 +109,7 @@ export default function FounderSection() {
                         <span className="mr-2 tabular-nums opacity-70">10</span>Meet the Founder
                       </p>
                       <span className="eyebrow rounded-full border border-bone/20 bg-black/60 px-2 py-0.5 text-[0.5rem] text-bone/90 backdrop-blur-md shrink-0">
-                        Founder · Horizon Digital
+                        Founder · Horizon Digital LTD
                       </span>
                     </div>
 
@@ -118,14 +118,14 @@ export default function FounderSection() {
                     </h2>
 
                     <div className="body-copy mt-2 space-y-1.5 text-[0.74rem] text-bone/90 leading-relaxed">
-                      <p className="font-medium text-bone">I'm Syed Hassan, founder of Horizon Digital.</p>
+                      <p className="font-medium text-bone">I'm Syed Hassan, founder of Horizon Digital LTD.</p>
                       <p className="text-bone/80">My work sits at the intersection of business, technology, digital marketing and e-commerce — from marketing operations to building brands, websites, and SaaS products.</p>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-center justify-between gap-2 border-t border-bone/15 pt-2.5">
                     <div>
-                      <span className="eyebrow text-[0.48rem] text-gilt/70 block">United Kingdom · Horizon Digital</span>
+                      <span className="eyebrow text-[0.48rem] text-gilt/70 block">United Kingdom · Horizon Digital LTD</span>
                       <h3 className="display text-[0.92rem] text-bone block leading-tight">Syed Hassan</h3>
                     </div>
                     <a 
@@ -149,7 +149,7 @@ export default function FounderSection() {
                   >
                     <img 
                       src={founderImg}
-                      alt="Syed Hassan — Founder of Horizon Digital" 
+                      alt="Syed Hassan — Founder of Horizon Digital LTD" 
                       className="h-full w-full object-cover filter brightness-[1.04] contrast-[1.06] transition-transform duration-700 ease-out group-hover/img:scale-[1.04]"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }}
                       loading="eager"
@@ -169,7 +169,7 @@ export default function FounderSection() {
                 {/* Background Portrait Image at 50% Opacity — Properly Framed */}
                 <img 
                   src={founderImg}
-                  alt="Syed Hassan — Founder of Horizon Digital" 
+                  alt="Syed Hassan — Founder of Horizon Digital LTD" 
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                   style={{ opacity: 0.5, width: '100%', height: '100%', objectPosition: '75% 35%', display: 'block' }}
                   loading="eager"
@@ -187,7 +187,7 @@ export default function FounderSection() {
                         <span className="mr-2 tabular-nums opacity-70">10</span>Meet the Founder
                       </p>
                       <span className="eyebrow rounded-full border border-bone/20 bg-black/70 px-3 py-1 text-[0.54rem] sm:text-[0.58rem] text-bone/90 backdrop-blur-md shrink-0">
-                        Founder · Horizon Digital
+                        Founder · Horizon Digital LTD
                       </span>
                     </div>
 
@@ -196,7 +196,7 @@ export default function FounderSection() {
                     </h2>
 
                     <div className="body-copy mt-3.5 space-y-2 max-w-xl text-[0.82rem] sm:text-[0.86rem] md:text-[0.9rem] text-bone/90 leading-relaxed">
-                      <p className="font-medium text-bone">I'm Syed Hassan, founder of Horizon Digital.</p>
+                      <p className="font-medium text-bone">I'm Syed Hassan, founder of Horizon Digital LTD.</p>
                       <p className="text-bone/85">My work sits at the intersection of business, technology, digital marketing and e-commerce — from marketing operations to building brands, websites, and SaaS products.</p>
                       <p className="text-bone/75">What I enjoy most is turning an idea into something real — a brand, a digital experience, or a business system people actually use.</p>
                     </div>
@@ -204,7 +204,7 @@ export default function FounderSection() {
 
                   <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-bone/15 pt-3.5">
                     <div>
-                      <span className="eyebrow text-[0.52rem] sm:text-[0.56rem] text-gilt/80 block">United Kingdom · Horizon Digital</span>
+                      <span className="eyebrow text-[0.52rem] sm:text-[0.56rem] text-gilt/80 block">United Kingdom · Horizon Digital LTD</span>
                       <h3 className="display text-[1.05rem] sm:text-[1.15rem] text-bone block leading-tight">Syed Hassan</h3>
                     </div>
                     <a 

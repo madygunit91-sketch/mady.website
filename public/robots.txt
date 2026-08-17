@@ -1,0 +1,6 @@
+# Robots.txt for Horizon Digital LTD
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://horizondigital.ltd/sitemap.xml
