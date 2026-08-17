@@ -34,7 +34,7 @@ export function getCurrentSectionIndex() {
   return closestIdx;
 }
 
-export function scrollToSection(target, lockDuration = 600) {
+export function scrollToSection(target, lockDuration = 700) {
   const id = typeof target === 'number' ? SECTIONS[target] : target;
   if (!id) return;
   const el = document.getElementById(id);
@@ -43,18 +43,13 @@ export function scrollToSection(target, lockDuration = 600) {
   if (lockTimeout) clearTimeout(lockTimeout);
   isLocked = true;
 
-  try {
-    el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  } catch (err) {
-    const rect = el.getBoundingClientRect();
-    window.scrollTo({
-      top: Math.round(rect.top + window.scrollY),
-      behavior: 'smooth'
-    });
-  }
+  const rect = el.getBoundingClientRect();
+  const targetTop = rect.top + window.scrollY;
+
+  window.scrollTo({
+    top: Math.round(targetTop),
+    behavior: 'smooth'
+  });
 
   try {
     window.history.pushState(null, '', `#${id}`);

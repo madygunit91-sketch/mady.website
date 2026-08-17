@@ -1,64 +1,281 @@
 import React, { useRef } from 'react';
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Environment, PresentationControls, Float, Sparkles, ContactShadows } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, PresentationControls, Float, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { useScroll } from 'framer-motion';
 
-function KnightModel({ progress }) {
-  const gltf = useLoader(GLTFLoader, '/knight_uncompressed.glb');
-  const clone = React.useMemo(() => gltf.scene.clone(), [gltf]);
+// Immediately preload GLTF models into browser memory for 0ms render
+useGLTF.preload('/knight_uncompressed.glb');
+useGLTF.preload('/logo_uncompressed.glb');
+
+// Dynamic System Dark / Light Mode Listener Hook
+function useSystemTheme() {
+  const [isDark, setIsDark] = React.useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return true;
+  });
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => setIsDark(e.matches);
+    
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    } else if (mediaQuery.addListener) {
+      mediaQuery.addListener(handleChange);
+      return () => mediaQuery.removeListener(handleChange);
+    }
+  }, []);
+
+  return isDark;
+}
+
+// Multi-Layer High-Voltage Lightning & Continuous Corona Discharge System
+function KnightLightning({ isDark = true }) {
+  const coreLineRef = useRef();
+  const auraLineRef = useRef();
+  const lightRef = useRef();
+  const flashTimer = useRef(0);
+  const isFlashing = useRef(false);
+  const flashCount = useRef(0);
+  
+  // 360 floats = 120 vertices = 60 line segments for dense multi-branch lightning
+  const positions = React.useMemo(() => new Float32Array(360), []);
+  const auraPositions = React.useMemo(() => new Float32Array(360), []);
+
+  const generateBolt = (start, end, maxDisplace, segments) => {
+    const points = [start];
+    for (let i = 1; i < segments; i++) {
+      const t = i / segments;
+      const x = start.x + (end.x - start.x) * t + (Math.random() - 0.5) * maxDisplace;
+      const y = start.y + (end.y - start.y) * t + (Math.random() - 0.5) * maxDisplace;
+      const z = start.z + (end.z - start.z) * t + (Math.random() - 0.5) * maxDisplace;
+      points.push(new THREE.Vector3(x, y, z));
+    }
+    points.push(end);
+    return points;
+  };
+
+  useFrame((state, delta) => {
+    if (!coreLineRef.current || !auraLineRef.current) return;
+
+    flashTimer.current -= delta;
+
+    if (flashTimer.current <= 0) {
+      if (flashCount.current > 0) {
+        // High frequency multi-strobe lightning burst
+        isFlashing.current = !isFlashing.current;
+        flashCount.current--;
+        flashTimer.current = 0.03 + Math.random() * 0.05;
+      } else {
+        // Frequent strikes: every 0.6 to 1.4 seconds
+        isFlashing.current = Math.random() > 0.3;
+        flashCount.current = isFlashing.current ? Math.floor(3 + Math.random() * 5) : 0;
+        flashTimer.current = isFlashing.current ? 0.04 : 0.6 + Math.random() * 0.9;
+      }
+    }
+
+    let idx = 0;
+    
+    // 1. Continuous Micro-Arcs (Always Active Corona Discharge across the knight)
+    const continuousArcs = [
+      { start: new THREE.Vector3(0.05, 1.85, 0.1), end: new THREE.Vector3(-0.15, 1.6, 0.25) },
+      { start: new THREE.Vector3(-0.1, 1.7, -0.1), end: new THREE.Vector3(0.2, 1.45, -0.05) },
+      { start: new THREE.Vector3(0.25, 1.3, 0.2), end: new THREE.Vector3(0.1, 0.9, 0.35) },
+      { start: new THREE.Vector3(-0.2, 1.1, -0.2), end: new THREE.Vector3(-0.05, 0.6, -0.3) }
+    ];
+
+    continuousArcs.forEach(arc => {
+      const pts = generateBolt(arc.start, arc.end, 0.14, 4);
+      for (let i = 0; i < pts.length - 1; i++) {
+        if (idx + 6 <= positions.length) {
+          positions[idx] = pts[i].x;
+          positions[idx+1] = pts[i].y;
+          positions[idx+2] = pts[i].z;
+          positions[idx+3] = pts[i+1].x;
+          positions[idx+4] = pts[i+1].y;
+          positions[idx+5] = pts[i+1].z;
+
+          // Aura layer slightly displaced for neon bloom effect
+          auraPositions[idx] = pts[i].x * 1.03;
+          auraPositions[idx+1] = pts[i].y * 1.02;
+          auraPositions[idx+2] = pts[i].z * 1.03;
+          auraPositions[idx+3] = pts[i+1].x * 1.03;
+          auraPositions[idx+4] = pts[i+1].y * 1.02;
+          auraPositions[idx+5] = pts[i+1].z * 1.03;
+          idx += 6;
+        }
+      }
+    });
+
+    // 2. High-Voltage Lightning Strike Forks during Flash Bursts
+    if (isFlashing.current) {
+      const majorStrikes = [
+        { 
+          start: new THREE.Vector3((Math.random() - 0.5) * 1.5, 3.2 + Math.random() * 0.8, (Math.random() - 0.5) * 1.5), 
+          end: new THREE.Vector3((Math.random() - 0.5) * 0.5, 1.7 + Math.random() * 0.3, (Math.random() - 0.5) * 0.5) 
+        },
+        { 
+          start: new THREE.Vector3(0.1, 1.7, 0.1), 
+          end: new THREE.Vector3(-0.5, 0.2 + (Math.random() - 0.5) * 0.4, 0.4) 
+        },
+        { 
+          start: new THREE.Vector3(-0.1, 1.6, -0.1), 
+          end: new THREE.Vector3(0.45, -0.1, -0.3) 
+        },
+        { 
+          start: new THREE.Vector3((Math.random() - 0.5) * 0.8, 1.2, 0.3), 
+          end: new THREE.Vector3((Math.random() - 0.5) * 1.0, -0.4, -0.2) 
+        }
+      ];
+
+      majorStrikes.forEach(target => {
+        const pts = generateBolt(target.start, target.end, 0.32, 7);
+        for (let i = 0; i < pts.length - 1; i++) {
+          if (idx + 6 <= positions.length) {
+            positions[idx] = pts[i].x;
+            positions[idx+1] = pts[i].y;
+            positions[idx+2] = pts[i].z;
+            positions[idx+3] = pts[i+1].x;
+            positions[idx+4] = pts[i+1].y;
+            positions[idx+5] = pts[i+1].z;
+
+            auraPositions[idx] = pts[i].x * 1.05;
+            auraPositions[idx+1] = pts[i].y * 1.03;
+            auraPositions[idx+2] = pts[i].z * 1.05;
+            auraPositions[idx+3] = pts[i+1].x * 1.05;
+            auraPositions[idx+4] = pts[i+1].y * 1.03;
+            auraPositions[idx+5] = pts[i+1].z * 1.05;
+            idx += 6;
+          }
+        }
+      });
+
+      if (lightRef.current) {
+        lightRef.current.intensity = 35 + Math.random() * 45;
+        lightRef.current.position.set(
+          (Math.random() - 0.5) * 1.0, 
+          1.8 + Math.random() * 0.9, 
+          0.8 + (Math.random() - 0.5) * 0.8
+        );
+      }
+    } else {
+      if (lightRef.current) {
+        lightRef.current.intensity = 2.0; // Ambient electrical charge
+      }
+    }
+
+    // Clear unused buffer vertices
+    while (idx < positions.length) {
+      positions[idx] = 0;
+      auraPositions[idx] = 0;
+      idx++;
+    }
+
+    coreLineRef.current.geometry.attributes.position.needsUpdate = true;
+    auraLineRef.current.geometry.attributes.position.needsUpdate = true;
+  });
+
+  const coreColor = isDark ? "#ffffff" : "#ffffff";
+  const auraColor = isDark ? "#38bdf8" : "#2563eb";
+  const flashColor = isDark ? "#cffafe" : "#fef08a";
+  const ambientIonColor = isDark ? "#60a5fa" : "#3b82f6";
+  const goldIonColor = isDark ? "#f59e0b" : "#d97706";
+
+  return (
+    <group>
+      {/* Outer Cyan/Electric Blue Plasma Glow Line Layer */}
+      <lineSegments ref={auraLineRef}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={auraPositions.length / 3}
+            array={auraPositions}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <lineBasicMaterial 
+          color={auraColor} 
+          transparent 
+          opacity={0.85} 
+          linewidth={4} 
+          blending={THREE.AdditiveBlending} 
+        />
+      </lineSegments>
+
+      {/* Superheated White-Hot Core Lightning Bolt Layer */}
+      <lineSegments ref={coreLineRef}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={positions.length / 3}
+            array={positions}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <lineBasicMaterial 
+          color={coreColor} 
+          transparent 
+          opacity={0.98} 
+          linewidth={2} 
+          blending={THREE.AdditiveBlending} 
+        />
+      </lineSegments>
+      
+      {/* Dynamic Lightning Flash Strobe */}
+      <pointLight ref={lightRef} color={flashColor} distance={14} decay={1.4} intensity={2} />
+      
+      {/* Constant Electric Ionization Corona Glow */}
+      <pointLight color={ambientIonColor} position={[0, 1.4, 0.4]} distance={6} decay={2} intensity={2.5} />
+      <pointLight color={goldIonColor} position={[0, 0.3, 0.4]} distance={5} decay={2} intensity={1.8} />
+    </group>
+  );
+}
+
+function KnightModel({ progress, isDark = true }) {
+  const { scene } = useGLTF('/knight_uncompressed.glb');
+  const clone = React.useMemo(() => scene.clone(), [scene]);
   const { viewport } = useThree();
   
   React.useEffect(() => {
     clone.traverse((child) => {
       if (child.isMesh) {
+        // Deep obsidian chrome in dark mode / Polished regal gold in light mode
         child.material = new THREE.MeshPhysicalMaterial({
-          color: '#1a1a1a', 
-          metalness: 0.8,
-          roughness: 0.2,
+          color: isDark ? '#18191c' : '#78531e', 
+          metalness: isDark ? 0.85 : 0.88,
+          roughness: isDark ? 0.22 : 0.20,
           clearcoat: 1.0,
-          clearcoatRoughness: 0.1,
-          envMapIntensity: 2.0 
+          clearcoatRoughness: 0.12,
+          reflectivity: 1.0
         });
       }
     });
-  }, [clone]);
+  }, [clone, isDark]);
 
   const groupRef = useRef();
 
   // Responsive dynamic bounds
   const isPortrait = viewport.height > viewport.width;
-  // On portrait/mobile, restrict horizontal movement so it doesn't fly off-screen
-  // On desktop, clamp the max displacement so it looks natural on ultra-wides
-  const xOffset = isPortrait ? viewport.width * 0.15 : Math.min(viewport.width * 0.25, 4);
+  
+  // On portrait/mobile, keep knight clearly visible on screen
+  const xOffset = isPortrait ? viewport.width * 0.16 : Math.min(viewport.width * 0.25, 4);
   const rightX = xOffset;
   const leftX = -xOffset;
   const centerX = 0;
   
-  // Increase scale to be almost the size of the text as requested
+  // Responsive scale ensuring full visibility across screens
   const responsiveScale = isPortrait 
-    ? viewport.width * 0.55 
+    ? Math.min(viewport.width * 0.62, 3.4)
     : Math.min(viewport.width, viewport.height) * 0.52;
     
-  // Lower the base Y position significantly so the much larger knight fits fully on screen
-  const baseY = isPortrait ? -viewport.height * 0.38 : -viewport.height * 0.46;
+  // Base Y positioning - higher on mobile so it is 100% visible on small screens
+  const baseY = isPortrait ? -viewport.height * 0.28 : -viewport.height * 0.46;
 
-  // 12 sections mapping (text position -> knight position)
-  // 0: start (text L) -> knight R
-  // 1: in-zahlen (text R) -> knight L
-  // 2: was-wir-bauen (text L) -> knight R
-  // 3: wie-wir-bauen (text R) -> knight L
-  // 4: arbeiten (text L/C) -> knight R
-  // 5: aus-einer-hand (text L) -> knight R
-  // 6: vom-briefing-zum-launch (text R) -> knight L
-  // 7: haeufige-fragen (text L) -> knight R
-  // 8: das-system (text L) -> knight R
-  // 9: aktivitaet (C) -> knight C
-  // 10: founder (text L, image R) -> knight R
-  // 11: projekt-anfragen (C) -> knight C
-  // 12: footer (C) -> knight C
-  
   const farRightX = isPortrait ? viewport.width * 0.18 : Math.min(viewport.width * 0.32, 4.5);
   
   const states = [
@@ -80,8 +297,6 @@ function KnightModel({ progress }) {
   useFrame(() => {
     if (!groupRef.current) return;
     const p = progress.get();
-    
-    // Safety check against NaN
     const safeP = isNaN(p) ? 0 : p;
     
     const floatIndex = safeP * (states.length - 1);
@@ -103,77 +318,44 @@ function KnightModel({ progress }) {
   return (
     <group ref={groupRef}>
       <primitive object={clone} />
+      {/* Lightning effect attached directly to Knight model coordinate space */}
+      <KnightLightning isDark={isDark} />
     </group>
   );
 }
 
-function LogoModel({ progress }) {
-  const gltf = useLoader(GLTFLoader, '/logo_uncompressed.glb');
-  const clone = React.useMemo(() => gltf.scene.clone(), [gltf]);
-  
-  React.useEffect(() => {
-    clone.traverse((child) => {
-      if (child.isMesh) {
-        child.material = new THREE.MeshBasicMaterial({
-          color: '#ffffff', 
-          transparent: true,
-          opacity: 0.1
-        });
-      }
-    });
-  }, [clone]);
-
-  const groupRef = useRef();
-
-  useFrame(() => {
-    if (!groupRef.current) return;
-    const p = progress.get();
-    groupRef.current.position.set(
-      Math.sin(p * Math.PI) * 2, 
-      0, 
-      -2 - (p * 4)
-    );
-    groupRef.current.rotation.set(0, p * Math.PI, 0);
-    groupRef.current.scale.setScalar(3.5 + p * 1.5);
-  });
-
-  return (
-    <group ref={groupRef}>
-      <primitive object={clone} />
-    </group>
-  );
-}
-
-function DebugBox() {
-  return (
-    <mesh position={[0, 0, 0]} scale={2}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshNormalMaterial />
-    </mesh>
-  );
-}
-
-function Scene() {
+function Scene({ isDark = true }) {
   const { scrollYProgress } = useScroll();
 
   return (
     <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-      <LogoModel progress={scrollYProgress} />
-      <KnightModel progress={scrollYProgress} />
+      <KnightModel progress={scrollYProgress} isDark={isDark} />
     </Float>
   );
 }
 
 export default function Background3D() {
+  const isDark = useSystemTheme();
+
   return (
     <div className="fixed inset-0 z-[5] pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        gl={{ 
+          powerPreference: "high-performance",
+          antialias: true, 
+          alpha: true,
+          stencil: false,
+          depth: true
+        }}
       >
-        <ambientLight intensity={2.0} />
-        <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={5} castShadow />
-        <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={2} />
+        {/* Balanced, sculpted studio lighting to highlight glossy metallic contours */}
+        <ambientLight intensity={isDark ? 1.4 : 1.8} />
+        <directionalLight position={[10, 15, 10]} intensity={isDark ? 3.5 : 4.0} color={isDark ? "#ffffff" : "#fffbeb"} />
+        <directionalLight position={[-10, 8, -5]} intensity={isDark ? 2.5 : 3.0} color={isDark ? "#fde047" : "#f59e0b"} />
+        <directionalLight position={[0, -8, 8]} intensity={1.2} color={isDark ? "#94a3b8" : "#fed7aa"} />
+        <pointLight position={[0, 1, 4]} intensity={isDark ? 1.5 : 2.0} distance={10} color="#ffffff" />
         
         <PresentationControls
           global
@@ -184,13 +366,11 @@ export default function Background3D() {
           snap={{ mass: 4, tension: 400 }}
         >
           <React.Suspense fallback={null}>
-            <Scene />
-            <Environment preset="studio" />
+            <Scene isDark={isDark} />
           </React.Suspense>
         </PresentationControls>
 
-        <Sparkles count={150} scale={15} size={2} speed={0.4} opacity={0.15} color="#ffffff" />
-        <ContactShadows position={[0, -2.5, 0]} opacity={0.7} scale={15} blur={3} far={5} color="#000000" />
+        <Sparkles count={80} scale={15} size={1.8} speed={0.4} opacity={0.15} color={isDark ? "#ffffff" : "#fbbf24"} />
       </Canvas>
     </div>
   );
