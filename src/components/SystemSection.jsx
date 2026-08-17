@@ -130,37 +130,42 @@ export default function SystemSection() {
       content: (
         <div className="flex flex-col gap-2.5 pt-2 border-t border-bone/10 mt-2">
           <p className="text-[0.68rem] text-bone/80 leading-relaxed font-light">
-            Dynamic weighting adjusted specifically per engagement — balance of visual power, conversion, and performance:
+            Where the weight of a project sits — calibrated specifically per engagement:
           </p>
-          <div className="space-y-1.5 text-[0.62rem]">
-            <div>
-              <div className="flex justify-between text-bone/80 mb-0.5">
-                <span>Strategy &amp; Storytelling</span>
-                <span className="text-gilt font-medium">92%</span>
-              </div>
-              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
-                <div className="h-full bg-gilt rounded-full" style={{ width: '92%' }} />
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-bone/80 mb-0.5">
-                <span>3D &amp; Visual Craft</span>
-                <span className="text-gilt font-medium">96%</span>
-              </div>
-              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
-                <div className="h-full bg-gilt rounded-full" style={{ width: '96%' }} />
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-bone/80 mb-0.5">
-                <span>Performance &amp; Code Quality</span>
-                <span className="text-gilt font-medium">95%</span>
-              </div>
-              <div className="h-1 rounded-full bg-bone/10 overflow-hidden">
-                <div className="h-full bg-gilt rounded-full" style={{ width: '95%' }} />
-              </div>
+          {/* Interactive Visx Radar Chart Diagram */}
+          <div className="relative mx-auto aspect-square w-full max-w-[13.5rem] my-1">
+            <div className="relative aspect-square h-full w-full">
+              <RadarChart />
             </div>
           </div>
+          <p className="text-[0.60rem] leading-relaxed text-bone/40 text-center italic">
+            Weighting 0–100 per project type — a profile, not measurements.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'attitude',
+      step: '05',
+      eyebrow: 'Attitude',
+      title: 'What we stand by',
+      stat: 'Principles',
+      content: (
+        <div className="flex flex-col gap-2.5 pt-2 border-t border-bone/10 mt-2">
+          <dl className="flex flex-col gap-2 text-[0.68rem]">
+            <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-2">
+              <dt className="eyebrow text-[0.54rem] text-gilt font-semibold mb-0.5">Real-time</dt>
+              <dd className="text-bone/75 text-[0.64rem] leading-relaxed">Every image and scene is calculated live in the browser via WebGL.</dd>
+            </div>
+            <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-2">
+              <dt className="eyebrow text-[0.54rem] text-gilt font-semibold mb-0.5">One piece</dt>
+              <dd className="text-bone/75 text-[0.64rem] leading-relaxed">Concept, design, 3D and code execution come from a single source.</dd>
+            </div>
+            <div className="rounded-md border border-bone/10 bg-bone/[0.03] p-2">
+              <dt className="eyebrow text-[0.54rem] text-gilt font-semibold mb-0.5">Measured</dt>
+              <dd className="text-bone/75 text-[0.64rem] leading-relaxed">Load times and 60fps frame budgets are verified on real hardware.</dd>
+            </div>
+          </dl>
         </div>
       )
     }
