@@ -334,44 +334,88 @@ function Scene({ isDark = true }) {
   );
 }
 
+class WebGLErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.warn("WebGL context unavailable or failed, falling back to CSS background:", error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null;
+    }
+    return this.props.children;
+  }
+}
+
+function isWebGLSupported() {
+  if (typeof window === 'undefined') return false;
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl') || canvas.getContext('webgl2')));
+  } catch (e) {
+    return false;
+  }
+}
+
 export default function Background3D() {
   const isDark = useSystemTheme();
+  const [supported, setSupported] = React.useState(true);
+
+  React.useEffect(() => {
+    setSupported(isWebGLSupported());
+  }, []);
+
+  if (!supported) return null;
 
   return (
     <div className="fixed inset-0 z-[5] pointer-events-none">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{ 
-          powerPreference: "high-performance",
-          antialias: true, 
-          alpha: true,
-          stencil: false,
-          depth: true
-        }}
-      >
-        {/* Balanced, sculpted studio lighting to highlight glossy metallic contours */}
-        <ambientLight intensity={isDark ? 1.4 : 1.8} />
-        <directionalLight position={[10, 15, 10]} intensity={isDark ? 3.5 : 4.0} color={isDark ? "#ffffff" : "#fffbeb"} />
-        <directionalLight position={[-10, 8, -5]} intensity={isDark ? 2.5 : 3.0} color={isDark ? "#fde047" : "#f59e0b"} />
-        <directionalLight position={[0, -8, 8]} intensity={1.2} color={isDark ? "#94a3b8" : "#fed7aa"} />
-        <pointLight position={[0, 1, 4]} intensity={isDark ? 1.5 : 2.0} distance={10} color="#ffffff" />
-        
-        <PresentationControls
-          global
-          rotation={[0, 0, 0]}
-          polar={[-0.1, 0.1]}
-          azimuth={[-0.2, 0.2]}
-          config={{ mass: 2, tension: 400 }}
-          snap={{ mass: 4, tension: 400 }}
+      <WebGLErrorBoundary fallback={null}>
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 45 }}
+          dpr={[1, 1.5]}
+          gl={{ 
+            powerPreference: "high-performance",
+            antialias: true, 
+            alpha: true,
+            stencil: false,
+            depth: true
+          }}
+          onCreated={({ gl }) => {
+            gl.domElement.addEventListener('webglcontextlost', (event) => {
+              event.preventDefault();
+              setSupported(false);
+            }, false);
+          }}
         >
-          <React.Suspense fallback={null}>
-            <Scene isDark={isDark} />
-          </React.Suspense>
-        </PresentationControls>
+          {/* Balanced, sculpted studio lighting to highlight glossy metallic contours */}
+          <ambientLight intensity={isDark ? 1.4 : 1.8} />
+          <directionalLight position={[10, 15, 10]} intensity={isDark ? 3.5 : 4.0} color={isDark ? "#ffffff" : "#fffbeb"} />
+          <directionalLight position={[-10, 8, -5]} intensity={isDark ? 2.5 : 3.0} color={isDark ? "#fde047" : "#f59e0b"} />
+          <directionalLight position={[0, -8, 8]} intensity={1.2} color={isDark ? "#94a3b8" : "#fed7aa"} />
+          <pointLight position={[0, 1, 4]} intensity={isDark ? 1.5 : 2.0} distance={10} color="#ffffff" />
+          
+          <PresentationControls
+            global
+            rotation={[0, 0, 0]}
+            polar={[-0.1, 0.1]}
+            azimuth={[-0.2, 0.2]}
+            config={{ mass: 2, tension: 400 }}
+            snap={{ mass: 4, tension: 400 }}
+          >
+            <React.Suspense fallback={null}>
+              <Scene isDark={isDark} />
+            </React.Suspense>
+          </PresentationControls>
 
-        <Sparkles count={80} scale={15} size={1.8} speed={0.4} opacity={0.15} color={isDark ? "#ffffff" : "#fbbf24"} />
-      </Canvas>
+          <Sparkles count={80} scale={15} size={1.8} speed={0.4} opacity={0.15} color={isDark ? "#ffffff" : "#fbbf24"} />
+        </Canvas>
+      </WebGLErrorBoundary>
     </div>
   );
 }
