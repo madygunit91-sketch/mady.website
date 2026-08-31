@@ -163,14 +163,21 @@ https://mady.website?utm_source=chatgpt.com`;
 
     try {
       const emailPayloads = [
-        // 1. Primary Edge Endpoint (/api/inquiry handled by Cloudflare Worker)
+        // 1. Live Cloudflare Worker Edge Handler (Direct Resend Dual Dispatch)
+        fetch('https://horizon-digital-inquiry.veiled-tiger.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }).catch(() => null),
+
+        // 2. Local/Custom Domain Edge Route
         fetch('/api/inquiry', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         }).catch(() => null),
 
-        // 2. Direct FormSubmit Browser AJAX Backup (direct to madygunit@me.com)
+        // 3. Direct FormSubmit Browser AJAX Backup (direct to madygunit@me.com)
         fetch('https://formsubmit.co/ajax/madygunit@me.com', {
           method: 'POST',
           headers: {
