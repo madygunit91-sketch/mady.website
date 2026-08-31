@@ -1,48 +1,31 @@
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// Vercel / Standard Node Serverless Function for /api/inquiry
+export default async function handler(req, res) {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
+  }
 
-const recordsFile = path.join(__dirname, 'records.json');
+  const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
+  const FOUNDER_EMAIL = 'madygunit@me.com';
+  const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
 
-// Initialize records.json if it doesn't exist
-if (!fs.existsSync(recordsFile)) {
-  fs.writeFileSync(recordsFile, JSON.stringify([]));
-}
-
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
-const FOUNDER_EMAIL = 'madygunit@me.com';
-const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
-
-app.post('/api/inquiry', async (req, res) => {
   try {
-    const data = req.body;
-    const { name, email, phone, projectType, budget, details } = data;
-    
-    // Add timestamp and ID
-    const inquiry = {
-      id: Date.now().toString(),
-      timestamp: new Date().toISOString(),
-      ...data
-    };
-    
-    // Read existing records
-    const fileContent = fs.readFileSync(recordsFile, 'utf8');
-    const records = JSON.parse(fileContent);
-    records.push(inquiry);
-    fs.writeFileSync(recordsFile, JSON.stringify(records, null, 2));
-    
-    console.log('New project inquiry saved for:', email);
+    const { name, email, phone, projectType, budget, details } = req.body || {};
 
-    // Prepare email contents
+    if (!email || !name) {
+      return res.status(400).json({ success: false, error: 'Missing required fields' });
+    }
+
+    const timestamp = new Date().toUTCString();
+
     const clientText = `Hi there,
 
 I'm Syed Hassan, founder of Horizon Digital LTD.
@@ -143,7 +126,7 @@ https://mady.website?utm_source=chatgpt.com`;
           </tr>
           <tr>
             <td style="padding: 10px 0; color: rgba(243,243,242,0.6); font-size: 13px;">Submitted At:</td>
-            <td style="padding: 10px 0; color: rgba(243,243,242,0.8); font-size: 13px;">${inquiry.timestamp}</td>
+            <td style="padding: 10px 0; color: rgba(243,243,242,0.8); font-size: 13px;">${timestamp}</td>
           </tr>
         </table>
         
@@ -159,56 +142,49 @@ https://mady.website?utm_source=chatgpt.com`;
       </div>
     `;
 
-    // Send emails in parallel via Resend API
-    try {
-      const [adminRes, clientRes] = await Promise.all([
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'Horizon Digital <info@mady.website>',
-            to: [FOUNDER_EMAIL],
-            reply_to: `${name} <${email}>`,
-            subject: `⚡ New Project Inquiry: ${name} (${projectType || 'General'})`,
-            html: adminHtml,
-            text: `New project inquiry from ${name} (${email}, ${phone || 'N/A'})\n\nProject Type: ${projectType}\nBudget: ${budget}\nDetails:\n${details}`
-          })
-        }),
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: SENDER_EMAIL,
-            to: [email],
-            reply_to: 'info@mady.website',
-            subject: 'Thank You for Contacting Horizon Digital',
-            text: clientText,
-            html: clientHtml
-          })
-        })
-      ]);
+    const adminEmailPromise = fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: 'Horizon Digital <info@mady.website>',
+        to: [FOUNDER_EMAIL],
+        reply_to: `${name} <${email}>`,
+        subject: `⚡ New Project Inquiry: ${name} (${projectType || 'General'})`,
+        html: adminHtml,
+        text: `New project inquiry from ${name} (${email}, ${phone || 'N/A'})\n\nProject Type: ${projectType}\nBudget: ${budget}\nDetails:\n${details}`
+      })
+    });
 
-      const adminData = await adminRes.json();
-      const clientData = await clientRes.json();
-      console.log('Emails dispatched successfully:', { adminId: adminData.id, clientId: clientData.id });
-    } catch (emailErr) {
-      console.error('Error dispatching emails via Resend:', emailErr);
-    }
-    
-    res.status(200).json({ success: true, id: inquiry.id });
+    const clientEmailPromise = fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: SENDER_EMAIL,
+        to: [email],
+        reply_to: 'info@mady.website',
+        subject: 'Thank You for Contacting Horizon Digital',
+        text: clientText,
+        html: clientHtml
+      })
+    });
+
+    const [adminRes, clientRes] = await Promise.all([adminEmailPromise, clientEmailPromise]);
+    const adminResult = await adminRes.json();
+    const clientResult = await clientRes.json();
+
+    return res.status(200).json({
+      success: true,
+      adminEmailId: adminResult.id,
+      clientEmailId: clientResult.id
+    });
   } catch (error) {
-    console.error('Error saving inquiry:', error);
-    res.status(500).json({ success: false, error: 'Failed to save inquiry' });
+    console.error('Error in inquiry handler:', error);
+    return res.status(500).json({ success: false, error: error.message });
   }
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
-});
+}

@@ -1,48 +1,41 @@
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-const recordsFile = path.join(__dirname, 'records.json');
-
-// Initialize records.json if it doesn't exist
-if (!fs.existsSync(recordsFile)) {
-  fs.writeFileSync(recordsFile, JSON.stringify([]));
+// Cloudflare Pages Function for /api/inquiry
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+  });
 }
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
-const FOUNDER_EMAIL = 'madygunit@me.com';
-const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
+export async function onRequestPost(context) {
+  const RESEND_API_KEY = context.env?.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
+  const FOUNDER_EMAIL = 'madygunit@me.com';
+  const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
 
-app.post('/api/inquiry', async (req, res) => {
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json'
+  };
+
   try {
-    const data = req.body;
-    const { name, email, phone, projectType, budget, details } = data;
-    
-    // Add timestamp and ID
-    const inquiry = {
-      id: Date.now().toString(),
-      timestamp: new Date().toISOString(),
-      ...data
-    };
-    
-    // Read existing records
-    const fileContent = fs.readFileSync(recordsFile, 'utf8');
-    const records = JSON.parse(fileContent);
-    records.push(inquiry);
-    fs.writeFileSync(recordsFile, JSON.stringify(records, null, 2));
-    
-    console.log('New project inquiry saved for:', email);
+    const formData = await context.request.json();
+    const { name, email, phone, projectType, budget, details } = formData;
 
-    // Prepare email contents
+    if (!email || !name) {
+      return new Response(JSON.stringify({ success: false, error: 'Missing required fields' }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    const timestamp = new Date().toUTCString();
+
+    // 1. Client Thank You Email Content
     const clientText = `Hi there,
 
 I'm Syed Hassan, founder of Horizon Digital LTD.
@@ -113,6 +106,7 @@ https://mady.website?utm_source=chatgpt.com`;
       </div>
     `;
 
+    // 2. Admin Notification Email Content
     const adminHtml = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0b0b0c; color: #f3f3f2; padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
         <div style="margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
@@ -143,7 +137,7 @@ https://mady.website?utm_source=chatgpt.com`;
           </tr>
           <tr>
             <td style="padding: 10px 0; color: rgba(243,243,242,0.6); font-size: 13px;">Submitted At:</td>
-            <td style="padding: 10px 0; color: rgba(243,243,242,0.8); font-size: 13px;">${inquiry.timestamp}</td>
+            <td style="padding: 10px 0; color: rgba(243,243,242,0.8); font-size: 13px;">${timestamp}</td>
           </tr>
         </table>
         
@@ -159,56 +153,60 @@ https://mady.website?utm_source=chatgpt.com`;
       </div>
     `;
 
-    // Send emails in parallel via Resend API
-    try {
-      const [adminRes, clientRes] = await Promise.all([
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'Horizon Digital <info@mady.website>',
-            to: [FOUNDER_EMAIL],
-            reply_to: `${name} <${email}>`,
-            subject: `⚡ New Project Inquiry: ${name} (${projectType || 'General'})`,
-            html: adminHtml,
-            text: `New project inquiry from ${name} (${email}, ${phone || 'N/A'})\n\nProject Type: ${projectType}\nBudget: ${budget}\nDetails:\n${details}`
-          })
-        }),
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: SENDER_EMAIL,
-            to: [email],
-            reply_to: 'info@mady.website',
-            subject: 'Thank You for Contacting Horizon Digital',
-            text: clientText,
-            html: clientHtml
-          })
-        })
-      ]);
+    // Send Admin Notification Email
+    const adminEmailPromise = fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: 'Horizon Digital <info@mady.website>',
+        to: [FOUNDER_EMAIL],
+        reply_to: `${name} <${email}>`,
+        subject: `⚡ New Project Inquiry: ${name} (${projectType || 'General'})`,
+        html: adminHtml,
+        text: `New project inquiry from ${name} (${email}, ${phone || 'N/A'})\n\nProject Type: ${projectType}\nBudget: ${budget}\nDetails:\n${details}`
+      })
+    });
 
-      const adminData = await adminRes.json();
-      const clientData = await clientRes.json();
-      console.log('Emails dispatched successfully:', { adminId: adminData.id, clientId: clientData.id });
-    } catch (emailErr) {
-      console.error('Error dispatching emails via Resend:', emailErr);
-    }
-    
-    res.status(200).json({ success: true, id: inquiry.id });
+    // Send Client Confirmation Thank-You Email
+    const clientEmailPromise = fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: SENDER_EMAIL,
+        to: [email],
+        reply_to: 'info@mady.website',
+        subject: 'Thank You for Contacting Horizon Digital',
+        text: clientText,
+        html: clientHtml
+      })
+    });
+
+    // Await both email sends in parallel
+    const [adminRes, clientRes] = await Promise.all([adminEmailPromise, clientEmailPromise]);
+
+    const adminResult = await adminRes.json();
+    const clientResult = await clientRes.json();
+
+    return new Response(JSON.stringify({
+      success: true,
+      adminEmailId: adminResult.id,
+      clientEmailId: clientResult.id
+    }), {
+      status: 200,
+      headers: corsHeaders
+    });
+
   } catch (error) {
-    console.error('Error saving inquiry:', error);
-    res.status(500).json({ success: false, error: 'Failed to save inquiry' });
+    console.error('Error processing inquiry in Cloudflare function:', error);
+    return new Response(JSON.stringify({ success: false, error: error.message }), {
+      status: 500,
+      headers: corsHeaders
+    });
   }
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
-});
+}
