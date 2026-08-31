@@ -162,47 +162,32 @@ https://mady.website?utm_source=chatgpt.com`;
     `;
 
     try {
-      // Direct CORS-enabled Resend Gateway + API Route dual dispatch
-      const gatewayEndpoint = 'https://cors.eu.org/https://api.resend.com/emails';
-
       const emailPayloads = [
-        // 1. Founder Notification
-        fetch(gatewayEndpoint, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'Horizon Digital <info@mady.website>',
-            to: ['madygunit@me.com'],
-            reply_to: `${formData.name} <${formData.email}>`,
-            subject: `⚡ New Project Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
-            html: adminHtml,
-            text: `New inquiry from ${formData.name} (${formData.email}, ${formData.phone || 'N/A'})\n\nBudget: ${formData.budget}\nDetails: ${formData.details}`
-          })
-        }),
-        // 2. Client Confirmation Autoresponder
-        fetch(gatewayEndpoint, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'Syed Hassan <info@mady.website>',
-            to: [formData.email],
-            reply_to: 'info@mady.website',
-            subject: 'Thank You for Contacting Horizon Digital',
-            text: clientText,
-            html: clientHtml
-          })
-        }),
-        // 3. Local / Serverless API endpoint
+        // 1. Primary Edge Endpoint (/api/inquiry handled by Cloudflare Worker)
         fetch('/api/inquiry', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
+        }).catch(() => null),
+
+        // 2. Direct FormSubmit Browser AJAX Backup (direct to madygunit@me.com)
+        fetch('https://formsubmit.co/ajax/madygunit@me.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            'Client Name': formData.name,
+            'Email Address': formData.email,
+            'Phone Number': formData.phone || 'Not provided',
+            'Project Type': formData.projectType,
+            'Budget': formData.budget,
+            'Project Details': formData.details,
+            _subject: `⚡ New Project Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
+            _replyto: formData.email,
+            _template: 'table'
+          })
         }).catch(() => null)
       ];
 
