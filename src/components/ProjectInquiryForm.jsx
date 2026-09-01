@@ -175,7 +175,7 @@ https://mady.website?utm_source=chatgpt.com`;
       };
 
       const emailPayloads = [
-        // 1. Direct FormSubmit AJAX to Gmail
+        // 1. Direct FormSubmit AJAX to Gmail with Submitter Autoresponse
         fetchWithTimeout('https://formsubmit.co/ajax/madygunit91@gmail.com', {
           method: 'POST',
           headers: {
@@ -184,6 +184,7 @@ https://mady.website?utm_source=chatgpt.com`;
           },
           body: JSON.stringify({
             'Client Name': formData.name,
+            'email': formData.email,
             'Email Address': formData.email,
             'Phone Number': formData.phone || 'Not provided',
             'Project Type': formData.projectType,
@@ -191,6 +192,7 @@ https://mady.website?utm_source=chatgpt.com`;
             'Project Details': formData.details,
             _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
             _replyto: formData.email,
+            _autoresponse: clientText,
             _template: 'table'
           })
         }, 3000),
@@ -204,6 +206,7 @@ https://mady.website?utm_source=chatgpt.com`;
           },
           body: JSON.stringify({
             'Client Name': formData.name,
+            'email': formData.email,
             'Email Address': formData.email,
             'Phone Number': formData.phone || 'Not provided',
             'Project Type': formData.projectType,
@@ -211,6 +214,7 @@ https://mady.website?utm_source=chatgpt.com`;
             'Project Details': formData.details,
             _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
             _replyto: formData.email,
+            _autoresponse: clientText,
             _template: 'table'
           })
         }, 3000),
