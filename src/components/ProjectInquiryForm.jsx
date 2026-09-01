@@ -163,21 +163,27 @@ https://mady.website?utm_source=chatgpt.com`;
 
     try {
       const emailPayloads = [
-        // 1. Live Cloudflare Worker Edge Handler (Direct Resend Dual Dispatch)
-        fetch('https://horizon-digital-inquiry.veiled-tiger.workers.dev', {
+        // 1. Direct FormSubmit Browser AJAX to Gmail (Permanent, No Expiration)
+        fetch('https://formsubmit.co/ajax/madygunit91@gmail.com', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            'Client Name': formData.name,
+            'Email Address': formData.email,
+            'Phone Number': formData.phone || 'Not provided',
+            'Project Type': formData.projectType,
+            'Budget': formData.budget,
+            'Project Details': formData.details,
+            _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
+            _replyto: formData.email,
+            _template: 'table'
+          })
         }).catch(() => null),
 
-        // 2. Local/Custom Domain Edge Route
-        fetch('/api/inquiry', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        }).catch(() => null),
-
-        // 3. Direct FormSubmit Browser AJAX Backup (direct to madygunit@me.com)
+        // 2. Direct FormSubmit Browser AJAX to iCloud
         fetch('https://formsubmit.co/ajax/madygunit@me.com', {
           method: 'POST',
           headers: {
@@ -191,10 +197,17 @@ https://mady.website?utm_source=chatgpt.com`;
             'Project Type': formData.projectType,
             'Budget': formData.budget,
             'Project Details': formData.details,
-            _subject: `⚡ New Project Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
+            _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
             _replyto: formData.email,
             _template: 'table'
           })
+        }).catch(() => null),
+
+        // 3. Local/Edge Route
+        fetch('/api/inquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
         }).catch(() => null)
       ];
 
