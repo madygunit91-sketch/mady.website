@@ -56,8 +56,6 @@ export default function ProjectInquiryForm({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    const RESEND_API_KEY = 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
     const timestamp = new Date().toUTCString();
 
     const clientText = `Hi there,

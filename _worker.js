@@ -25,7 +25,7 @@ export default {
           });
         }
 
-        const RESEND_API_KEY = env?.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
+        const RESEND_API_KEY = env?.RESEND_API_KEY || '';
         const FOUNDER_EMAILS = ['madygunit@me.com', 'madygunit91@gmail.com'];
         const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
         const timestamp = new Date().toUTCString();

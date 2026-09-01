@@ -18,7 +18,7 @@ if (!fs.existsSync(recordsFile)) {
   fs.writeFileSync(recordsFile, JSON.stringify([]));
 }
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_fHR9jcdQ_BDFS6cMjkzYroDVzA4r1GK4x';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const FOUNDER_EMAIL = 'madygunit@me.com';
 const SENDER_EMAIL = 'Syed Hassan <info@mady.website>';
 
