@@ -162,29 +162,23 @@ https://mady.website?utm_source=chatgpt.com`;
     `;
 
     try {
-      const emailPayloads = [
-        // 1. Direct FormSubmit Browser AJAX to Gmail (Permanent, No Expiration)
-        fetch('https://formsubmit.co/ajax/madygunit91@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            'Client Name': formData.name,
-            'Email Address': formData.email,
-            'Phone Number': formData.phone || 'Not provided',
-            'Project Type': formData.projectType,
-            'Budget': formData.budget,
-            'Project Details': formData.details,
-            _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
-            _replyto: formData.email,
-            _template: 'table'
+      const fetchWithTimeout = (url, options, timeoutMs = 2500) => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        return fetch(url, { ...options, signal: controller.signal })
+          .then(res => {
+            clearTimeout(timer);
+            return res;
           })
-        }).catch(() => null),
+          .catch(err => {
+            clearTimeout(timer);
+            return null;
+          });
+      };
 
-        // 2. Direct FormSubmit Browser AJAX to iCloud
-        fetch('https://formsubmit.co/ajax/madygunit@me.com', {
+      const emailPayloads = [
+        // 1. Direct FormSubmit AJAX to Gmail
+        fetchWithTimeout('https://formsubmit.co/ajax/madygunit91@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -201,23 +195,42 @@ https://mady.website?utm_source=chatgpt.com`;
             _replyto: formData.email,
             _template: 'table'
           })
-        }).catch(() => null),
+        }, 3000),
+
+        // 2. Direct FormSubmit AJAX to iCloud
+        fetchWithTimeout('https://formsubmit.co/ajax/madygunit@me.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            'Client Name': formData.name,
+            'Email Address': formData.email,
+            'Phone Number': formData.phone || 'Not provided',
+            'Project Type': formData.projectType,
+            'Budget': formData.budget,
+            'Project Details': formData.details,
+            _subject: `⚡ New Horizon Digital Inquiry: ${formData.name} (${formData.projectType || 'General'})`,
+            _replyto: formData.email,
+            _template: 'table'
+          })
+        }, 3000),
 
         // 3. Local/Edge Route
-        fetch('/api/inquiry', {
+        fetchWithTimeout('/api/inquiry', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-        }).catch(() => null)
+        }, 1500)
       ];
 
       await Promise.allSettled(emailPayloads);
-      setIsSuccess(true);
     } catch (error) {
       console.error('Inquiry submission error:', error);
-      setIsSuccess(true);
     } finally {
       setIsSubmitting(false);
+      setIsSuccess(true);
     }
   };
 
