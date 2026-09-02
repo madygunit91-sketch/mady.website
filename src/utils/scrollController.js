@@ -1,16 +1,16 @@
 export const SECTIONS = [
   'start',
-  'in-zahlen',
-  'was-wir-bauen',
-  'wie-wir-bauen',
-  'arbeiten',
-  'aus-einer-hand',
-  'vom-briefing-zum-launch',
-  'haeufige-fragen',
-  'das-system',
-  'aktivitaet',
-  'founder',
-  'projekt-anfragen',
+  'in-numbers',
+  'services',
+  'build',
+  'work',
+  'studio',
+  'process',
+  'faq',
+  'system',
+  'activity',
+  'about',
+  'contact',
   'footer'
 ];
 

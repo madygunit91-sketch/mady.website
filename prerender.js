@@ -21,7 +21,7 @@ const homePrerenderedHTML = `
     <!-- Hero Section -->
     <section id="start" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-24">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">01</span>Horizon Digital LTD</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">00</span>Web Design · Development · Brand Experience</p>
         <h1 class="display text-[clamp(2.2rem,5vw,4.5rem)] font-normal leading-[1.08] tracking-tight text-bone">
           Web design that makes brands <span class="display-italic">look bigger.</span>
         </h1>
@@ -29,10 +29,10 @@ const homePrerenderedHTML = `
           We design and develop modern websites that not only look extraordinary, but build trust, guide users, and perform measurably.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href="#kontakt" class="inline-flex items-center justify-center rounded-full bg-gilt px-6 py-3 text-xs font-semibold uppercase tracking-wider text-space transition hover:bg-gilt/90">
+          <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-gilt px-6 py-3 text-xs font-semibold uppercase tracking-wider text-space transition hover:bg-gilt/90">
             Start Project Inquiry
           </a>
-          <a href="#arbeiten" class="inline-flex items-center justify-center rounded-full border border-bone/20 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-bone transition hover:border-bone/50">
+          <a href="#work" class="inline-flex items-center justify-center rounded-full border border-bone/20 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-bone transition hover:border-bone/50">
             View Selected Work
           </a>
         </div>
@@ -40,9 +40,9 @@ const homePrerenderedHTML = `
     </section>
 
     <!-- Metrics / In Numbers -->
-    <section id="in-zahlen" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+    <section id="in-numbers" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">02</span>Impact</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">01</span>Impact</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">What has measurably remained from the work of recent projects.</h2>
         <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
@@ -62,9 +62,9 @@ const homePrerenderedHTML = `
     </section>
 
     <!-- Services / What We Build -->
-    <section id="was-wir-bauen" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+    <section id="services" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">03</span>Services — Design</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">02</span>Services — Design</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Bespoke Design, 3D WebGL &amp; UI/UX Systems</h2>
         <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
@@ -84,16 +84,16 @@ const homePrerenderedHTML = `
     </section>
 
     <!-- Founder Section -->
-    <section id="founder-section" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+    <section id="about" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">05</span>Leadership</p>
-        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Syed Hassan — Founder &amp; Director</h2>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">10</span>Leadership</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Syed Mudassar Hassan (Mady) — Web Developer &amp; Designer</h2>
         <div class="mt-8 rounded-xl border border-bone/10 bg-bone/[0.02] p-6 md:p-8">
           <p class="body-copy text-base leading-relaxed text-bone/85">
-            Syed Hassan founded Horizon Digital LTD with a clear vision: technology should make ambitious ideas possible, not make them more complicated. Based in London, Horizon Digital combines editorial design aesthetics with cutting-edge 3D WebGL engineering to build high-performance web products that elevate brands globally.
+            Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL, 3D websites, digital products, and high-performance UI/UX systems.
           </p>
           <div class="mt-6 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider text-gilt">
-            <span>London, United Kingdom</span>
+            <span>United Kingdom</span>
             <span>•</span>
             <a href="mailto:info@mady.website" class="underline hover:text-bone">info@mady.website</a>
           </div>
@@ -102,21 +102,21 @@ const homePrerenderedHTML = `
     </section>
 
     <!-- FAQ Section -->
-    <section id="haeufige-fragen" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+    <section id="faq" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
         <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">07</span>FAQ</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Frequently Asked Questions</h2>
         <div class="mt-8 space-y-4">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
             <h3 class="text-base font-semibold text-gilt">How much does a custom WebGL website cost?</h3>
-            <p class="mt-2 text-sm text-bone/80">Bespoke projects at Horizon Digital LTD typically range from €10,000 to €25,000+ depending on 3D WebGL complexity, bespoke shader engineering, and interactive depth. Every project receives a transparent, fixed-scope proposal tailored to your commercial goals.</p>
+            <p class="mt-2 text-sm text-bone/80">Bespoke projects typically range from €10,000 to €25,000+ depending on 3D WebGL complexity, bespoke shader engineering, and interactive depth. Every project receives a transparent, fixed-scope proposal tailored to your commercial goals.</p>
           </div>
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
             <h3 class="text-base font-semibold text-gilt">How long does a website build take?</h3>
             <p class="mt-2 text-sm text-bone/80">A complete bespoke web experience is typically designed, engineered, and launched in 4 to 8 weeks. This covers strategic dramaturgy, 3D composition, responsive development, accessibility compliance, and sub-second performance optimization.</p>
           </div>
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
-            <h3 class="text-base font-semibold text-gilt">What technologies does Horizon Digital LTD use?</h3>
+            <h3 class="text-base font-semibold text-gilt">What technologies does Mady use?</h3>
             <p class="mt-2 text-sm text-bone/80">We build bespoke digital products using React, Three.js, WebGL shaders, Tailwind CSS, Vite, and edge-native serverless architectures, delivering 60fps real-time 3D performance on both desktop and mobile without external plugins.</p>
           </div>
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
@@ -130,7 +130,7 @@ const homePrerenderedHTML = `
     <!-- Footer -->
     <footer id="footer" class="border-t border-bone/10 px-4 py-12 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 sm:flex-row">
-        <p class="text-xs text-bone/50">© ${new Date().getFullYear()} Horizon Digital LTD. All rights reserved.</p>
+        <p class="text-xs text-bone/50">© ${new Date().getFullYear()} Syed Mudassar Hassan (Mady). All rights reserved.</p>
         <div class="flex gap-6 text-xs text-bone/60">
           <a href="/web-design" class="hover:text-bone">Web Design</a>
           <a href="/webgl-development" class="hover:text-bone">3D WebGL</a>
@@ -151,31 +151,31 @@ console.log('✓ Prerendered root index.html with complete semantic DOM structur
 const subpages = [
   {
     slug: 'web-design',
-    title: 'Web Design & UI/UX Systems — Horizon Digital LTD London',
-    description: 'Bespoke web design studio in London crafting luxury digital interfaces, high-conversion landing pages, and structured brand systems.',
+    title: 'Web Design & UI/UX Systems — Syed Mudassar Hassan (Mady)',
+    description: 'Bespoke web design crafting luxury digital interfaces, high-conversion landing pages, and structured brand systems.',
     heading: 'Bespoke Web Design & UI/UX Systems',
-    content: 'Horizon Digital LTD engineers luxury web designs and UI/UX systems focused on trust, user guidance, and measured conversion lift.'
+    content: 'Syed Mudassar Hassan (Mady) engineers luxury web designs and UI/UX systems focused on trust, user guidance, and measured conversion lift.'
   },
   {
     slug: 'webgl-development',
-    title: '3D WebGL & Interactive Web Development — Horizon Digital LTD',
+    title: '3D WebGL & Interactive Web Development — Syed Mudassar Hassan (Mady)',
     description: 'Custom WebGL shaders, Three.js 3D web experiences, and real-time interactive digital products engineered for 60fps performance.',
     heading: '3D WebGL & Real-Time Interactive Development',
     content: 'We create high-performance browser 3D experiences using WebGL and Three.js without plugins, built for strict frame budgets and sub-second load times.'
   },
   {
     slug: 'services',
-    title: 'Digital Studio Services — Horizon Digital LTD',
-    description: 'Explore full-service web design, 3D WebGL engineering, brand experience design, and speed optimization by Horizon Digital LTD.',
+    title: 'Digital Studio Services — Syed Mudassar Hassan (Mady)',
+    description: 'Explore full-service web design, 3D WebGL engineering, brand experience design, and speed optimization.',
     heading: 'Digital Engineering & Design Services',
     content: 'From strategic dramaturgy and 3D prototyping to responsive edge deployment, our services cover the entire lifecycle of modern digital flagships.'
   },
   {
     slug: 'about',
-    title: 'About Syed Hassan & Horizon Digital LTD — London Studio',
-    description: 'Learn about Syed Hassan, founder and director of Horizon Digital LTD, building ambitious digital products and 3D WebGL experiences.',
-    heading: 'About Founder Syed Hassan & Studio Philosophy',
-    content: 'Horizon Digital was created around a simple belief: technology should make ambitious ideas possible, not make them more complicated.'
+    title: 'About Syed Mudassar Hassan (Mady) — Web Developer & Designer',
+    description: 'Learn about Syed Mudassar Hassan (known as Mady), building ambitious digital products and 3D WebGL experiences.',
+    heading: 'About Syed Mudassar Hassan (Mady)',
+    content: 'Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL and 3D websites, turning ambitious ideas into practical, scalable, and visually stunning digital solutions.'
   }
 ];
 
@@ -191,7 +191,7 @@ for (const page of subpages) {
     .replace('<div id="root"></div>', `<div id="root">
       <main class="min-h-screen bg-space text-bone px-4 py-20 max-w-4xl mx-auto">
         <header class="mb-8 border-b border-bone/10 pb-6">
-          <a href="/" class="text-xs uppercase tracking-widest text-gilt hover:underline">← Back to Horizon Digital</a>
+          <a href="/" class="text-xs uppercase tracking-widest text-gilt hover:underline">← Back to Portfolio</a>
           <h1 class="display text-3xl sm:text-4xl mt-4 text-bone">${page.heading}</h1>
           <p class="text-lg text-bone/80 mt-2">${page.description}</p>
         </header>
@@ -199,7 +199,7 @@ for (const page of subpages) {
           <p class="text-base">${page.content}</p>
         </article>
         <div class="mt-12 pt-6 border-t border-bone/10">
-          <a href="/#kontakt" class="inline-flex items-center rounded-full bg-gilt px-6 py-3 text-xs font-semibold uppercase tracking-wider text-space">
+          <a href="/#contact" class="inline-flex items-center rounded-full bg-gilt px-6 py-3 text-xs font-semibold uppercase tracking-wider text-space">
             Start Project Inquiry
           </a>
         </div>

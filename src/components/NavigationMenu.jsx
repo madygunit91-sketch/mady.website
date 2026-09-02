@@ -3,17 +3,17 @@ import { SECTIONS, scrollToSection, getCurrentSectionIndex } from '../utils/scro
 
 const sections = [
   { id: 'start', label: 'Home', number: '00' },
-  { id: 'in-zahlen', label: 'In Numbers', number: '01' },
-  { id: 'was-wir-bauen', label: 'Services — Design', number: '02' },
-  { id: 'wie-wir-bauen', label: 'Services — Build', number: '03' },
-  { id: 'arbeiten', label: 'Work', number: '04' },
-  { id: 'aus-einer-hand', label: 'Studio', number: '05' },
-  { id: 'vom-briefing-zum-launch', label: 'Process', number: '06' },
-  { id: 'haeufige-fragen', label: 'FAQ', number: '07' },
-  { id: 'das-system', label: 'The System', number: '08' },
-  { id: 'aktivitaet', label: 'Activity', number: '09' },
-  { id: 'founder', label: 'Meet the Founder', number: '10' },
-  { id: 'projekt-anfragen', label: 'Contact', number: '11' },
+  { id: 'in-numbers', label: 'In Numbers', number: '01' },
+  { id: 'services', label: 'Services — Design', number: '02' },
+  { id: 'build', label: 'Services — Build', number: '03' },
+  { id: 'work', label: 'Work', number: '04' },
+  { id: 'studio', label: 'Studio', number: '05' },
+  { id: 'process', label: 'Process', number: '06' },
+  { id: 'faq', label: 'FAQ', number: '07' },
+  { id: 'system', label: 'The System', number: '08' },
+  { id: 'activity', label: 'Activity', number: '09' },
+  { id: 'about', label: 'Meet the Founder', number: '10' },
+  { id: 'contact', label: 'Contact', number: '11' },
   { id: 'footer', label: 'Footer', number: '12' },
 ];
 
