@@ -203,7 +203,7 @@ export default function SystemSection() {
         {/* Section Header */}
         <header className="relative z-10 mb-3 md:mb-4 shrink-0">
           <p className="eyebrow mb-1 text-gilt text-[0.62rem] sm:text-[0.68rem] md:text-[0.72rem]">
-            <span className="mr-2.5 tabular-nums opacity-70">08</span>The System
+            <span className="mr-2.5 tabular-nums opacity-70">09</span>The System
           </p>
           <h2 className="display text-[clamp(1.25rem,2.6vw,2.2rem)] text-bone leading-[1.12]" id="spatial-bento-heading">
             How a site is <span className="display-italic">put together</span>

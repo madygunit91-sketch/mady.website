@@ -3,6 +3,7 @@ export const SECTIONS = [
   'in-numbers',
   'services',
   'build',
+  'stack',
   'work',
   'studio',
   'process',

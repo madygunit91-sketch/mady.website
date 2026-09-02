@@ -106,7 +106,7 @@ export default function FounderSection() {
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-1.5">
                       <p className="eyebrow text-gilt flex items-center text-[0.62rem]">
-                        <span className="mr-2 tabular-nums opacity-70">10</span>Meet the Founder
+                        <span className="mr-2 tabular-nums opacity-70">11</span>Meet the Founder
                       </p>
                       <span className="eyebrow rounded-full border border-bone/20 bg-black/60 px-2 py-0.5 text-[0.5rem] text-bone/90 backdrop-blur-md shrink-0">
                         Founder · Horizon Digital LTD
@@ -184,7 +184,7 @@ export default function FounderSection() {
                   <div>
                     <div className="flex items-center justify-between gap-3 mb-2.5">
                       <p className="eyebrow text-gilt flex items-center text-[0.68rem] sm:text-[0.72rem]">
-                        <span className="mr-2 tabular-nums opacity-70">10</span>Meet the Founder
+                        <span className="mr-2 tabular-nums opacity-70">11</span>Meet the Founder
                       </p>
                       <span className="eyebrow rounded-full border border-bone/20 bg-black/70 px-3 py-1 text-[0.54rem] sm:text-[0.58rem] text-bone/90 backdrop-blur-md shrink-0">
                         Founder · Horizon Digital LTD

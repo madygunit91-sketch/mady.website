@@ -115,10 +115,32 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 04: Work -->
+
+    <!-- 04: Tech Stack Drift Wall -->
+    <section id="stack" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">04</span>INDUSTRY-STANDARD STACK</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Engineered with <span class="display-italic">modern tooling</span></h2>
+        <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
+          I build with React, TypeScript, Three.js, Tailwind CSS and deploy on edge platforms like Vercel and Cloudflare.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-2.5 max-w-lg">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">React</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">TypeScript</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Three.js</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Tailwind CSS</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Vite</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Node.js</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Supabase</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-bone/15 bg-bone/[0.04] text-xs font-mono text-bone/85">Cloudflare</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: Work -->
     <section id="work" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">04</span>Work</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">05</span>Work</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Work that <span class="display-italic">works</span></h2>
         <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
@@ -140,10 +162,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 05: Studio -->
+    <!-- 06: Studio -->
     <section id="studio" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">05</span>Studio</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">06</span>Studio</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">From a Single Source</h2>
         <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
           Modern web design and development studio for brands, companies, and digital products — websites, landing pages, brand experiences, and UI/UX systems.
@@ -151,10 +173,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 06: Process -->
+    <!-- 07: Process -->
     <section id="process" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">06</span>Process</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">07</span>Process</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">From Briefing to Launch</h2>
         <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
@@ -181,10 +203,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 07: FAQ -->
+    <!-- 08: FAQ -->
     <section id="faq" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">07</span>FAQ</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">08</span>FAQ</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Frequently Asked Questions</h2>
         <div class="mt-8 space-y-4">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
@@ -207,10 +229,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 08: The System -->
+    <!-- 09: The System -->
     <section id="system" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">08</span>The System</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">09</span>The System</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">How a Site is Put Together</h2>
         <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
           Not a hunch, a system: global edge delivery, strict 60fps frame budgets, contrast validation, and real-time GPU rendering.
@@ -218,10 +240,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 09: Activity -->
+    <!-- 10: Activity -->
     <section id="activity" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">09</span>Activity</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">10</span>Activity</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">A Year, <span className="display-italic">Day by Day</span></h2>
         <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
           Continuous development and deployment cycle — dense build phases alternating with testing and coordination.
@@ -229,10 +251,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 10: Meet the Founder -->
+    <!-- 11: Meet the Founder -->
     <section id="about" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">10</span>Meet the Founder</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">11</span>Meet the Founder</p>
         <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Syed Mudassar Hassan (Mady)</h2>
         <div class="mt-8 rounded-xl border border-bone/10 bg-bone/[0.02] p-6 md:p-8">
           <p class="body-copy text-base leading-relaxed text-bone/85">
@@ -247,10 +269,10 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 11: Project Inquiry / Contact -->
+    <!-- 12: Project Inquiry / Contact -->
     <section id="contact" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20 text-center">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">11</span>Project Inquiry</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">12</span>Project Inquiry</p>
         <h2 class="display text-[clamp(2.1rem,5vw,3.8rem)] text-bone">Ready to take the leap?</h2>
         <p class="body-copy mx-auto mt-4 max-w-xl text-base text-bone/85">
           Tell us about your project. We will get back to you personally with an honest assessment.
@@ -258,7 +280,7 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- 12: Footer -->
+    <!-- 13: Footer -->
     <footer id="footer" class="border-t border-bone/10 px-4 py-12 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 sm:flex-row">
         <p class="text-xs text-bone/50">© ${new Date().getFullYear()} Syed Mudassar Hassan (Mady). All rights reserved.</p>
@@ -275,7 +297,7 @@ const homePrerenderedHTML = `
 `;
 
 // 1. Inject into main index.html
-const renderedHome = template.replace('<div id="root"></div>', `<div id="root">${homePrerenderedHTML}</div>`);
+const renderedHome = template.replace(/<div id="root">[\s\S]*<\/div>\s*<\/body>/, `<div id="root">${homePrerenderedHTML}</div>\n  </body>`);
 fs.writeFileSync(TEMPLATE_PATH, renderedHome, 'utf8');
 console.log('✓ Prerendered root index.html with complete semantic DOM structure');
 
@@ -297,30 +319,32 @@ const subpages = [
   },
   {
     slug: 'services',
-    title: 'Digital Studio Services — Syed Mudassar Hassan (Mady)',
-    description: 'Explore full-service web design, 3D WebGL engineering, brand experience design, and speed optimization.',
-    heading: 'Digital Engineering & Design Services',
-    content: 'From strategic dramaturgy and 3D prototyping to responsive edge deployment, our services cover the entire lifecycle of modern digital flagships.'
+    title: 'Full-Service Digital Studio Services — Syed Mudassar Hassan (Mady)',
+    description: 'Overview of web design, WebGL development, UI/UX systems, and conversion performance services.',
+    heading: 'Services — Concept, Design & Technical Execution',
+    content: 'Strategy, design, and technical implementation come from a single source — from first sketch to launch.'
   },
   {
     slug: 'about',
     title: 'About Syed Mudassar Hassan (Mady) — Web Developer & Designer',
-    description: 'Learn about Syed Mudassar Hassan (known as Mady), building ambitious digital products and 3D WebGL experiences.',
+    description: 'Learn about Syed Mudassar Hassan (known as Mady), web developer and designer specialising in WebGL, 3D websites, and high-performance UI/UX.',
     heading: 'About Syed Mudassar Hassan (Mady)',
-    content: 'Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL and 3D websites, turning ambitious ideas into practical, scalable, and visually stunning digital solutions.'
+    content: 'Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL, 3D websites, digital products, and high-performance UI/UX systems.'
   }
 ];
 
 for (const page of subpages) {
   const pageDir = path.resolve(DIST_DIR, page.slug);
-  fs.mkdirSync(pageDir, { recursive: true });
+  if (!fs.existsSync(pageDir)) {
+    fs.mkdirSync(pageDir, { recursive: true });
+  }
 
   const pageHtml = template
     .replace(/<title>.*?<\/title>/, `<title>${page.title}</title>`)
     .replace(/<meta name="title" content=".*?" \/>/, `<meta name="title" content="${page.title}" />`)
     .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${page.description}" />`)
     .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://mady.website/${page.slug}" />`)
-    .replace('<div id="root"></div>', `<div id="root">
+    .replace(/<div id="root">[\s\S]*<\/div>\s*<\/body>/, `<div id="root">
       <main class="min-h-screen bg-space text-bone px-4 py-20 max-w-4xl mx-auto">
         <header class="mb-8 border-b border-bone/10 pb-6">
           <a href="/" class="text-xs uppercase tracking-widest text-gilt hover:underline">← Back to Portfolio</a>
@@ -336,7 +360,7 @@ for (const page of subpages) {
           </a>
         </div>
       </main>
-    </div>`);
+    </div>\n  </body>`);
 
   fs.writeFileSync(path.resolve(pageDir, 'index.html'), pageHtml, 'utf8');
   console.log(`✓ Generated prerendered static page: /${page.slug}/index.html`);
