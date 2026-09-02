@@ -15,10 +15,10 @@ if (!fs.existsSync(TEMPLATE_PATH)) {
 
 const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
-// Rich Semantic Pre-rendered Home Content
+// Rich Semantic Pre-rendered Home Content with Continuous 00–12 Section Sequence
 const homePrerenderedHTML = `
   <main id="main-content" class="relative z-10 w-full overflow-hidden bg-space text-bone">
-    <!-- Hero Section -->
+    <!-- 00: Hero Section -->
     <section id="start" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-24">
         <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">00</span>Web Design · Development · Brand Experience</p>
@@ -26,7 +26,7 @@ const homePrerenderedHTML = `
           Web design that makes brands <span class="display-italic">look bigger.</span>
         </h1>
         <p class="body-copy mt-6 max-w-[58ch] text-[clamp(0.95rem,1.4vw,1.15rem)] leading-relaxed text-bone/85">
-          We design and develop modern websites that not only look extraordinary, but build trust, guide users, and perform measurably.
+          We design modern websites that not only look good, but build trust, guide users, and perform measurably.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-gilt px-6 py-3 text-xs font-semibold uppercase tracking-wider text-space transition hover:bg-gilt/90">
@@ -39,55 +39,201 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- Metrics / In Numbers -->
+    <!-- 01: In Numbers -->
     <section id="in-numbers" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">01</span>Impact</p>
-        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">What has measurably remained from the work of recent projects.</h2>
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <span class="display text-4xl font-light text-gilt">&lt; 0.8s</span>
-            <p class="mt-2 text-xs uppercase tracking-wider text-bone/60">Average Load Time (LCP)</p>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">01</span>Numbers</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">What remains measurable from recent projects.</h2>
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="display text-3xl font-light text-gilt">48+</span>
+            <p class="mt-2 text-xs text-bone/70">Completed Web Projects</p>
           </div>
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <span class="display text-4xl font-light text-gilt">60 FPS</span>
-            <p class="mt-2 text-xs uppercase tracking-wider text-bone/60">Real-Time WebGL Performance</p>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="display text-3xl font-light text-gilt">92%</span>
+            <p class="mt-2 text-xs text-bone/70">Customer Satisfaction</p>
           </div>
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <span class="display text-4xl font-light text-gilt">+140%</span>
-            <p class="mt-2 text-xs uppercase tracking-wider text-bone/60">Measured Conversion Lift</p>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="display text-3xl font-light text-gilt">3.8s</span>
+            <p class="mt-2 text-xs text-bone/70">Load Time Optimization</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="display text-3xl font-light text-gilt">+27%</span>
+            <p class="mt-2 text-xs text-bone/70">Conversion Increase</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services / What We Build -->
+    <!-- 02: Services — Design -->
     <section id="services" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
         <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">02</span>Services — Design</p>
-        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Bespoke Design, 3D WebGL &amp; UI/UX Systems</h2>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">What We Build</h2>
         <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <h3 class="display text-lg text-bone">Websites &amp; Brand Worlds</h3>
-            <p class="mt-2 text-sm text-bone/70">Modern websites with strong visual appearance, photographic typography, and clear user guidance.</p>
+            <span class="eyebrow text-xs text-gilt">01</span>
+            <h3 class="display text-lg text-bone mt-2">Web Design</h3>
+            <p class="mt-2 text-sm text-bone/70">Modern websites with strong visual appearance and clear user guidance.</p>
           </div>
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <h3 class="display text-lg text-bone">Conversion Landingpages</h3>
-            <p class="mt-2 text-sm text-bone/70">Conversion-optimized pages for digital products, campaigns, and high-growth services.</p>
+            <span class="eyebrow text-xs text-gilt">02</span>
+            <h3 class="display text-lg text-bone mt-2">Landing Pages</h3>
+            <p class="mt-2 text-sm text-bone/70">Conversion-optimized pages for products, campaigns, and services.</p>
           </div>
           <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
-            <h3 class="display text-lg text-bone">3D WebGL Experiences</h3>
-            <p class="mt-2 text-sm text-bone/70">Real-time GPU-rendered 3D environments, kinetic shaders, and interactive spatial interfaces.</p>
+            <span class="eyebrow text-xs text-gilt">03</span>
+            <h3 class="display text-lg text-bone mt-2">Brand Experience</h3>
+            <p class="mt-2 text-sm text-bone/70">Digital brand worlds with recognition value and high-quality aesthetics.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Founder Section -->
+    <!-- 03: Services — Build -->
+    <section id="build" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">03</span>Services — Implementation</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">And How We Build</h2>
+        <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
+            <span class="eyebrow text-xs text-gilt">04</span>
+            <h3 class="display text-lg text-bone mt-2">UI/UX Design</h3>
+            <p class="mt-2 text-sm text-bone/70">Structured interfaces, clear user guidance, and intuitive experiences.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
+            <span class="eyebrow text-xs text-gilt">05</span>
+            <h3 class="display text-lg text-bone mt-2">Web Development</h3>
+            <p class="mt-2 text-sm text-bone/70">Clean, fast, and responsive implementation of modern websites.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-6">
+            <span class="eyebrow text-xs text-gilt">06</span>
+            <h3 class="display text-lg text-bone mt-2">Performance</h3>
+            <p class="mt-2 text-sm text-bone/70">Optimization for speed, user behavior, and better conversion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: Work -->
+    <section id="work" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">04</span>Work</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Work that <span class="display-italic">works</span></h2>
+        <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt/60">Demo 001 · Barber & Hairdresser</span>
+            <h3 class="display text-base text-bone mt-1">Oak &amp; Blade</h3>
+            <p class="mt-2 text-xs text-bone/70">Masculine-editorial website for a premium barbershop — cinematic 3D hero.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt/60">Demo 002 · Fine Dining</span>
+            <h3 class="display text-base text-bone mt-1">Noir &amp; Basil</h3>
+            <p class="mt-2 text-xs text-bone/70">Atmospheric website for fine dining — moody menu storytelling.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt/60">Demo 004 · General Practice</span>
+            <h3 class="display text-base text-bone mt-1">Praxis Lindenhof</h3>
+            <p class="mt-2 text-xs text-bone/70">Calm, trustworthy website for a healthcare practice — clear structure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: Studio -->
+    <section id="studio" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">05</span>Studio</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">From a Single Source</h2>
+        <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
+          Modern web design and development studio for brands, companies, and digital products — websites, landing pages, brand experiences, and UI/UX systems.
+        </p>
+      </div>
+    </section>
+
+    <!-- 06: Process -->
+    <section id="process" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">06</span>Process</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">From Briefing to Launch</h2>
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt">01</span>
+            <h3 class="display text-base text-bone mt-2">Analysis</h3>
+            <p class="mt-1 text-xs text-bone/70">Brand, audience, market, and goals.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt">02</span>
+            <h3 class="display text-base text-bone mt-2">Concept</h3>
+            <p class="mt-1 text-xs text-bone/70">Structure, direction, user flow.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt">03</span>
+            <h3 class="display text-base text-bone mt-2">Design & Build</h3>
+            <p class="mt-1 text-xs text-bone/70">Responsive, accessible, fast.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <span class="eyebrow text-xs text-gilt">04</span>
+            <h3 class="display text-base text-bone mt-2">Launch</h3>
+            <p class="mt-1 text-xs text-bone/70">Publish, test, and optimize.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07: FAQ -->
+    <section id="faq" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">07</span>FAQ</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Frequently Asked Questions</h2>
+        <div class="mt-8 space-y-4">
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <h3 class="text-base font-semibold text-gilt">How much does a custom WebGL website cost?</h3>
+            <p class="mt-2 text-sm text-bone/80">Bespoke projects typically range from €10,000 to €25,000+ depending on 3D WebGL complexity, bespoke shader engineering, and interactive depth.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <h3 class="text-base font-semibold text-gilt">How long does a website build take?</h3>
+            <p class="mt-2 text-sm text-bone/80">A complete bespoke web experience is typically designed, engineered, and launched in 4 to 8 weeks.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <h3 class="text-base font-semibold text-gilt">What technologies does Mady use?</h3>
+            <p class="mt-2 text-sm text-bone/80">We build bespoke digital products using React, Three.js, WebGL shaders, Tailwind CSS, Vite, and edge serverless architectures.</p>
+          </div>
+          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
+            <h3 class="text-base font-semibold text-gilt">Does the 3D WebGL experience work on mobile devices?</h3>
+            <p class="mt-2 text-sm text-bone/80">Yes. Every composition is rethought per device viewport rather than merely scaled down.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08: The System -->
+    <section id="system" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">08</span>The System</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">How a Site is Put Together</h2>
+        <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
+          Not a hunch, a system: global edge delivery, strict 60fps frame budgets, contrast validation, and real-time GPU rendering.
+        </p>
+      </div>
+    </section>
+
+    <!-- 09: Activity -->
+    <section id="activity" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">09</span>Activity</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">A Year, <span className="display-italic">Day by Day</span></h2>
+        <p class="body-copy mt-4 max-w-2xl text-base text-bone/85">
+          Continuous development and deployment cycle — dense build phases alternating with testing and coordination.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10: Meet the Founder -->
     <section id="about" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">10</span>Leadership</p>
-        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Syed Mudassar Hassan (Mady) — Web Developer &amp; Designer</h2>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">10</span>Meet the Founder</p>
+        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Syed Mudassar Hassan (Mady)</h2>
         <div class="mt-8 rounded-xl border border-bone/10 bg-bone/[0.02] p-6 md:p-8">
           <p class="body-copy text-base leading-relaxed text-bone/85">
             Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL, 3D websites, digital products, and high-performance UI/UX systems.
@@ -101,41 +247,27 @@ const homePrerenderedHTML = `
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
-      <div class="mx-auto w-full max-w-4xl py-20">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">07</span>FAQ</p>
-        <h2 class="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bone">Frequently Asked Questions</h2>
-        <div class="mt-8 space-y-4">
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
-            <h3 class="text-base font-semibold text-gilt">How much does a custom WebGL website cost?</h3>
-            <p class="mt-2 text-sm text-bone/80">Bespoke projects typically range from €10,000 to €25,000+ depending on 3D WebGL complexity, bespoke shader engineering, and interactive depth. Every project receives a transparent, fixed-scope proposal tailored to your commercial goals.</p>
-          </div>
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
-            <h3 class="text-base font-semibold text-gilt">How long does a website build take?</h3>
-            <p class="mt-2 text-sm text-bone/80">A complete bespoke web experience is typically designed, engineered, and launched in 4 to 8 weeks. This covers strategic dramaturgy, 3D composition, responsive development, accessibility compliance, and sub-second performance optimization.</p>
-          </div>
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
-            <h3 class="text-base font-semibold text-gilt">What technologies does Mady use?</h3>
-            <p class="mt-2 text-sm text-bone/80">We build bespoke digital products using React, Three.js, WebGL shaders, Tailwind CSS, Vite, and edge-native serverless architectures, delivering 60fps real-time 3D performance on both desktop and mobile without external plugins.</p>
-          </div>
-          <div class="rounded-xl border border-bone/10 bg-bone/[0.02] p-5">
-            <h3 class="text-base font-semibold text-gilt">Does the 3D WebGL experience work on mobile devices?</h3>
-            <p class="mt-2 text-sm text-bone/80">Yes. Every composition is rethought per device viewport rather than merely scaled down. On desktop, full spatial depth is rendered; on mobile, a calibrated high-performance version ensures fluid 60fps interactions and zero battery drain.</p>
-          </div>
-        </div>
+    <!-- 11: Project Inquiry / Contact -->
+    <section id="contact" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
+      <div class="mx-auto w-full max-w-4xl py-20 text-center">
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">11</span>Project Inquiry</p>
+        <h2 class="display text-[clamp(2.1rem,5vw,3.8rem)] text-bone">Ready to take the leap?</h2>
+        <p class="body-copy mx-auto mt-4 max-w-xl text-base text-bone/85">
+          Tell us about your project. We will get back to you personally with an honest assessment.
+        </p>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 12: Footer -->
     <footer id="footer" class="border-t border-bone/10 px-4 py-12 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 sm:flex-row">
         <p class="text-xs text-bone/50">© ${new Date().getFullYear()} Syed Mudassar Hassan (Mady). All rights reserved.</p>
         <div class="flex gap-6 text-xs text-bone/60">
-          <a href="/web-design" class="hover:text-bone">Web Design</a>
-          <a href="/webgl-development" class="hover:text-bone">3D WebGL</a>
-          <a href="/services" class="hover:text-bone">Services</a>
-          <a href="/about" class="hover:text-bone">About Founder</a>
+          <a href="#services" class="hover:text-bone">Services</a>
+          <a href="#work" class="hover:text-bone">Work</a>
+          <a href="#process" class="hover:text-bone">Process</a>
+          <a href="#about" class="hover:text-bone">Founder</a>
+          <a href="#contact" class="hover:text-bone">Contact</a>
         </div>
       </div>
     </footer>

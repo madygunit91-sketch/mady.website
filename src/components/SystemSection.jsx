@@ -195,10 +195,8 @@ export default function SystemSection() {
     <section 
       aria-labelledby="spatial-bento-heading" 
       className="relative flex min-h-[100svh] md:h-[100svh] md:max-h-[100svh] md:overflow-hidden items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64 py-16 sm:py-20 md:py-0" 
-      id="das-system"
+      id="system"
     >
-      {/* Anchor alias for #system */}
-      <span id="system" className="absolute top-0 left-0 pointer-events-none" aria-hidden="true" />
 
       <div className="w-full max-w-6xl mx-auto flex flex-col justify-center min-h-full md:h-full md:max-h-[100svh] py-4 md:py-6">
         
