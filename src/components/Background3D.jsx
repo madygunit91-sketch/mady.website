@@ -4,9 +4,9 @@ import { useGLTF, PresentationControls, Float, Sparkles } from '@react-three/dre
 import * as THREE from 'three';
 import { useScroll } from 'framer-motion';
 
-// Immediately preload GLTF models into browser memory for 0ms render
-useGLTF.preload('/knight_uncompressed.glb');
-useGLTF.preload('/logo_uncompressed.glb');
+// Preload compressed GLTF models into browser memory
+useGLTF.preload('/knight.glb');
+useGLTF.preload('/logo.glb');
 
 // Dynamic System Dark / Light Mode Listener Hook
 function useSystemTheme() {
@@ -237,7 +237,7 @@ function KnightLightning({ isDark = true }) {
 }
 
 function KnightModel({ progress, isDark = true }) {
-  const { scene } = useGLTF('/knight_uncompressed.glb');
+  const { scene } = useGLTF('/knight.glb');
   const clone = React.useMemo(() => scene.clone(), [scene]);
   const { viewport } = useThree();
   

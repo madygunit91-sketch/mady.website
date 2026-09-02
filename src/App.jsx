@@ -20,6 +20,18 @@ function FaqSection() {
   const [activeTab, setActiveTab] = React.useState(0);
   const faqData = [
     {
+      q: "How much does a custom WebGL website cost?",
+      a: "Bespoke projects at Horizon Digital LTD typically range from €10,000 to €25,000+ depending on 3D WebGL complexity, bespoke shader engineering, and interactive depth. Every project receives a transparent, fixed-scope proposal tailored to your commercial goals."
+    },
+    {
+      q: "How long does a website build take?",
+      a: "A complete bespoke web experience is typically designed, engineered, and launched in 4 to 8 weeks. This covers strategic dramaturgy, 3D composition, responsive development, accessibility compliance, and sub-second performance optimization."
+    },
+    {
+      q: "What technologies does Horizon Digital LTD use?",
+      a: "We build bespoke digital products using React, Three.js, WebGL shaders, Tailwind CSS, Vite, and edge-native serverless architectures, delivering 60fps real-time 3D performance on both desktop and mobile without external plugins."
+    },
+    {
       q: "How is such a presence created?",
       a: "First the dramaturgy: which scene carries which message. Only then are design and code created. Camerawork, lighting, and typography are set like in a studio — digital, but with photographic ambition."
     },

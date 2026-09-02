@@ -1,6 +1,25 @@
-# Robots.txt for Horizon Digital LTD
+# Robots.txt for Horizon Digital LTD (mady.website)
 User-agent: *
 Allow: /
 
+# Explicit AI Search & Assistant Engine Permissions (GEO & AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
 # Sitemaps
-Sitemap: https://horizondigital.ltd/sitemap.xml
+Sitemap: https://mady.website/sitemap.xml
