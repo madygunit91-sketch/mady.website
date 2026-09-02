@@ -21,9 +21,9 @@ const homePrerenderedHTML = `
     <!-- 00: Hero Section -->
     <section id="start" class="relative flex min-h-[100svh] items-center px-4 sm:px-6 md:px-12 lg:pl-56 xl:pl-64">
       <div class="mx-auto w-full max-w-4xl py-24">
-        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">00</span>Web Design · Development · Brand Experience</p>
-        <h1 class="display text-[clamp(2.2rem,5vw,4.5rem)] font-normal leading-[1.08] tracking-tight text-bone">
-          Web design that makes brands <span class="display-italic">look bigger.</span>
+        <p class="eyebrow mb-4 text-gilt"><span class="mr-3 tabular-nums opacity-70">00</span>Web Developer &amp; Designer · WebGL &amp; 3D Specialist</p>
+        <h1 class="display text-[clamp(2.5rem,6vw,4.8rem)] font-normal leading-[1.08] tracking-tight text-bone">
+          Syed Mudassar <span class="text-gilt">Hassan</span>
         </h1>
         <p class="body-copy mt-6 max-w-[58ch] text-[clamp(0.95rem,1.4vw,1.15rem)] leading-relaxed text-bone/85">
           We design modern websites that not only look good, but build trust, guide users, and perform measurably.
