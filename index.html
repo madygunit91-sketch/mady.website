@@ -37,7 +37,9 @@
     <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0b0b0c" />
-    <meta name="msapplication-TileColor" content="#0b0b0c" />
+    <!-- 3D Models Preloaded for Instant 0ms Load -->
+    <link rel="preload" as="fetch" href="/knight_uncompressed.glb" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="/logo_uncompressed.glb" crossorigin="anonymous" />
 
     <!-- Critical Above-The-Fold Font Preloads -->
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/libre-baskerville-latin-400-normal-C42RasBZ.woff2" />
@@ -191,8 +193,8 @@
     </script>
     
     <!-- Vite Entrypoint -->
-    <script type="module" crossorigin src="/assets/index-B84BQQAj.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Dypfwjrb.css">
+    <script type="module" crossorigin src="/assets/index-DHzoqQAk.js"></script>
   </head>
   <body>
     <!-- Fallback Content for Non-JS Crawlers & Search Engines (GPTBot, ClaudeBot, Googlebot, Perplexity) -->
