@@ -330,6 +330,20 @@ const subpages = [
     description: 'Learn about Syed Mudassar Hassan (known as Mady), web developer and designer specialising in WebGL, 3D websites, and high-performance UI/UX.',
     heading: 'About Syed Mudassar Hassan (Mady)',
     content: 'Syed Mudassar Hassan (known as Mady) is a web developer and designer specialising in WebGL, 3D websites, digital products, and high-performance UI/UX systems.'
+  },
+  {
+    slug: 'impressum',
+    title: 'Imprint (Legal Notice) — Syed Mudassar Hassan (Mady)',
+    description: 'Legal disclosure and contact information for Syed Mudassar Hassan (Mady).',
+    heading: 'Imprint / Legal Notice',
+    content: 'Information pursuant to applicable commercial law: Syed Mudassar Hassan (Mady), London, United Kingdom. Email: info@mady.website.'
+  },
+  {
+    slug: 'datenschutz',
+    title: 'Privacy Policy — Syed Mudassar Hassan (Mady)',
+    description: 'Privacy policy and data protection information for mady.website.',
+    heading: 'Privacy Policy & Data Protection',
+    content: 'We take data protection seriously. This site does not collect personal data without your consent. Form inquiries are handled securely.'
   }
 ];
 

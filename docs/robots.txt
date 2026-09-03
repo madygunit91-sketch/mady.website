@@ -1,4 +1,4 @@
-# Robots.txt for Horizon Digital LTD (mady.website)
+# Robots.txt for Syed Mudassar Hassan (Mady) — https://mady.website
 User-agent: *
 Allow: /
 
